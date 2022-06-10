@@ -1,0 +1,348 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>AtCoder Beginner Contest 252   A—F | JasonQian's Blog</title><meta name="keywords" content="AtCoder题解集"><meta name="author" content="JasonQian"><meta name="copyright" content="JasonQian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="本题解思路来自这两位大佬 cup-pyy 、 GoodCoder666  A 题目描述 输出一个数字对应的ASCII码。 题目分析 时间复杂度：$O(1)$。 $Code$ 1234567int main()&amp;#123;	int n;	cin &gt;&gt; n;	cout &lt;&lt; (char)n &lt;&lt; endl;	return 0;&amp;#125; $ \ $ $ \ $">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AtCoder Beginner Contest 252   A—F">
+<meta property="og:url" content="http://example.com/2022/06/10/AtCoder-Beginner-Contest-252-A%E2%80%94F/index.html">
+<meta property="og:site_name" content="JasonQian&#39;s Blog">
+<meta property="og:description" content="本题解思路来自这两位大佬 cup-pyy 、 GoodCoder666  A 题目描述 输出一个数字对应的ASCII码。 题目分析 时间复杂度：$O(1)$。 $Code$ 1234567int main()&amp;#123;	int n;	cin &gt;&gt; n;	cout &lt;&lt; (char)n &lt;&lt; endl;	return 0;&amp;#125; $ \ $ $ \ $">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.jasonqian.com/img/menhera_22.jpg">
+<meta property="article:published_time" content="2022-06-10T07:20:49.000Z">
+<meta property="article:modified_time" content="2022-06-10T07:22:08.676Z">
+<meta property="article:author" content="JasonQian">
+<meta property="article:tag" content="AtCoder题解集">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.jasonqian.com/img/menhera_22.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/06/10/AtCoder-Beginner-Contest-252-A%E2%80%94F/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'AtCoder Beginner Contest 252   A—F',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-06-10 15:22:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://www.jasonqian.com/img/menhera_1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://www.jasonqian.com/img/menhera_22.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">JasonQian's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">AtCoder Beginner Contest 252   A—F</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-06-10T07:20:49.000Z" title="发表于 2022-06-10 15:20:49">2022-06-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-06-10T07:22:08.676Z" title="更新于 2022-06-10 15:22:08">2022-06-10</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="AtCoder Beginner Contest 252   A—F"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><blockquote>
+<p>本题解思路来自这两位大佬 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/517999894">cup-pyy</a> 、 <a target="_blank" rel="noopener" href="https://blog.csdn.net/write_1m_lines/article/details/124908389">GoodCoder666</a></p>
+</blockquote>
+<h2 id="A">A</h2>
+<h3 id="题目描述">题目描述</h3>
+<p>输出一个数字对应的ASCII码。</p>
+<h3 id="题目分析">题目分析</h3>
+<p>时间复杂度：$O(1)$。</p>
+<p>$Code$</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> n;</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	cout &lt;&lt; (<span class="type">char</span>)n &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>$ \ $<br>
+$ \ $</p>
+<h2 id="B">B</h2>
+<h3 id="题目描述-2">题目描述</h3>
+<p>高桥有$ \ N \ $个食物，第 $ \ i \ $个食物有个美味程度$ \ A_i\ $。</p>
+<p>在这些食物中，他有$ \ K \ $个不喜欢的食物，下标分别为$i = 1,2,…,K$。</p>
+<p>高桥会选择美味程度最大的品尝，他是否会吃到他不喜欢的食物呢？</p>
+<p>如果吃到了输出<code>Yes</code>，否则输出<code>No</code>。</p>
+<h3 id="题目分析-2">题目分析</h3>
+<p>时间复杂度：$O(n)$。</p>
+<p>我们用$ \ a \ $数组记录每个食物的美味程度，用$ \ b \ $布尔数组记录高桥不喜欢的食物。</p>
+<p>用$ \ maxv \ $记录美味程度最大的值。</p>
+<p>遍历$ \ a \ $数组，如果找到</p>
+<ul>
+<li><code>maxv == a[i] &amp;&amp; b[i]</code>，则说明当前<strong>食物美味程度是最大的</strong>，并且<strong>高桥不喜欢当前食物</strong>，就可以直接输出<code>Yes</code>即可</li>
+</ul>
+<p>若遍历完$ \ a \ $数组都没找到，则说明不会吃到不喜欢的食物，输出<code>No</code>即可。</p>
+<p>$Code$</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">110</span>;</span><br><span class="line"><span class="type">int</span> a[N], b[N];</span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ ) cin &gt;&gt; a[i];</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i ++ )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> x;</span><br><span class="line">		cin &gt;&gt; x;</span><br><span class="line">		b[x] = <span class="literal">true</span>;  <span class="comment">// 记录当前位置是高桥不喜欢的食物</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="type">int</span> maxv = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ )</span><br><span class="line">		<span class="keyword">if</span>(a[i] &gt; maxv) </span><br><span class="line">			maxv = a[i];</span><br><span class="line">		</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ )</span><br><span class="line">		<span class="keyword">if</span>(maxv == a[i] &amp;&amp; b[i])</span><br><span class="line">		&#123;</span><br><span class="line">			cout &lt;&lt; <span class="string">&quot;Yes&quot;</span> &lt;&lt; endl;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;No&quot;</span> &lt;&lt; endl;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>$ \ $<br>
+$ \ $</p>
+<h2 id="C">C</h2>
+<h3 id="题目描述-3">题目描述</h3>
+<p>（题目读起来很难受- -）</p>
+<p>有一个$ \ N \ $个卷轴的老虎机。</p>
+<p>每一个卷轴上是一个长度为$ \ 10 \ $的字符串$ \ S_i \ $，<code>0</code>,<code>1</code>,…,<code>9</code>只会出现一次。</p>
+<p>每一个卷轴上对应这一个按钮。对于非负时刻$ \ t \ $，高桥可以选择按或者不按其中一个按钮。</p>
+<p>如果其中的第$ \ i \ $个卷轴再在$ \ t \ $时刻按下，那么会显示出卷轴$ \ S_i \ $在$((t \ % \ 10) + 1)$的位置上字符</p>
+<p>高桥想让所有卷轴都显示出相同的字符。</p>
+<p>找到高桥能完成任务的最小时刻。</p>
+<h3 id="题目分析-3">题目分析</h3>
+<blockquote>
+<p>写的我都不知道写的什么了，好难解释-。-</p>
+</blockquote>
+<p>时间复杂度：$O(100n)$。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">例子A</span><br><span class="line"><span class="number">1937458062</span></span><br><span class="line"><span class="number">8124690357</span></span><br><span class="line"><span class="number">2385760149</span></span><br></pre></td></tr></table></figure>
+<p>通过观察可得：</p>
+<p>每一个数字如果在卷轴中想要被显示，那么就要<strong>满足</strong> 下标 = (t % 10) + 1。</p>
+<p>对于数字3来说，它在第一个卷轴中的位置为<strong>3</strong>（下标从1开始），第二个卷轴中的位置为<strong>8</strong>，第三个卷轴中的位置为<strong>2</strong>。</p>
+<p>如果想要<strong>显示3</strong>，则时间是取这三个卷轴中<strong>数字3位置最远的时间</strong>，也就是说想要显示3，时间就需要为 $max(3,8,2)  = 8 = (t \ % \ 10) +1, \ \ t=7$。</p>
+<p>同理，如果想要<strong>显示8</strong>，则时间是取这三个卷轴中<strong>数字8位置最远的时间</strong>，也就是说想要显示8，时间就需要为 $max(7,1,3)  = 7 = (t \ % \ 10) +1, \ \ t=6$。</p>
+<p>这就启发了我们一种思路，找到每个数字在每个卷轴中的<strong>最远位置</strong>，求出每个数字的<strong>最远距离</strong>的<strong>最小值</strong>，<strong>答案</strong>就是这个<strong>最小值转化为时间</strong>。</p>
+<hr>
+<p><strong>但是</strong>，上述思想仅仅针对没有重复的情况，每个数字在所有卷轴中位置为(0 ~ 9)的地方出现次数不能大于1。比如如下情况</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">例子B</span><br><span class="line"><span class="number">0123456789</span></span><br><span class="line"><span class="number">0123456789</span></span><br><span class="line"><span class="number">0123456789</span></span><br></pre></td></tr></table></figure>
+<p>在这种情况下，数字0的最近距离为1，按照上述说法，答案就因为为0，但是是错误的。</p>
+<p><strong>思想错误，就找另外的出路。</strong></p>
+<p>上述<strong>错误原因</strong>是因为某个数字在所有卷轴中位置为(0 ~ 9)的地方出现次数大于1。</p>
+<p>对于此原因，我们可以用$ \ cnt \ $数组来记录每个数字在卷轴中出现的下标。</p>
+<p>如<strong>例子B</strong>，假设枚举到数字2时$cnt[3] = 3$，就表示数字2在所有卷轴中位置为3的地方出现了3次（看例子B也很容易理解）。$cnt[4] = 0$，就表示数字2在所有卷轴中位置为4的地方出现了0次.</p>
+<p>假设某个数字在位置为0 ~ 9中出现了$cnt_1,cnt_2,…,cnt_9$，如图：</p>
+<p><img src="https://cdn.acwing.com/media/article/image/2022/06/10/53050_d954db78e8-abc_252_c.png" alt="abc_252_c.png"></p>
+<p>想要枚举完所有数，就必须枚举到最高位数，也就是$cnt_5$，注意观察，每次只能消除一层，所以我们用$ \ cnt \ $数组记录当前枚举的值的在所有卷轴中位置为(0 ~ 9)的地方出现次数。取最大的次数值。</p>
+<p>详见代码。</p>
+<p>$Code$</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">110</span>;</span><br><span class="line"><span class="type">int</span> n;</span><br><span class="line">string str[N];</span><br><span class="line"><span class="type">int</span> cnt[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++ ) cin &gt;&gt; str[i];</span><br><span class="line">	</span><br><span class="line">	<span class="type">int</span> ans = INF;  <span class="comment">// 定义全局答案</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt;= <span class="number">9</span>; i ++ )  <span class="comment">// 枚举每一个数字0 ~ 9</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> res = <span class="number">0</span>;  <span class="comment">// 定义局部答案，也就是每个数字达成目标状态所对应的时间</span></span><br><span class="line">		<span class="built_in">memset</span>(cnt, <span class="number">0</span>, <span class="keyword">sizeof</span> cnt);  <span class="comment">// 初始化</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j ++ )  <span class="comment">// 枚举所有卷轴</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="type">int</span> k = <span class="number">0</span>; k &lt;= <span class="number">9</span>; k ++ )  <span class="comment">// 枚举当前卷轴的位置上的数字</span></span><br><span class="line">				<span class="keyword">if</span>(str[j][k] == <span class="string">&#x27;0&#x27;</span> + i)  <span class="comment">// 如果与当前枚举的数i是相同的数字</span></span><br><span class="line">				&#123;</span><br><span class="line">					res = <span class="built_in">max</span>(res, <span class="number">10</span> * cnt[k] + k);  <span class="comment">// 取答案，最大值</span></span><br><span class="line">                    <span class="comment">// 这里的是求局部定义的最大值</span></span><br><span class="line">					cnt[k] ++ ;  <span class="comment">// 出现的位置数量加一</span></span><br><span class="line">					<span class="keyword">break</span>;  <span class="comment">// 提前退出当前卷轴</span></span><br><span class="line">				&#125;</span><br><span class="line">				</span><br><span class="line">		ans = <span class="built_in">min</span>(ans, res);  <span class="comment">// 求全局答案用最小值</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>$ \ $<br>
+$ \ $</p>
+<h2 id="D">D</h2>
+<h3 id="题目描述-4">题目描述</h3>
+<p>给定一个长度为$ \ N \ $的数组，$ A = (A_1, A_2, …, A_N).$</p>
+<p>找到有多少个三元组$ \ (i,j,k) \ $满足下面的情况</p>
+<ul>
+<li>$1 \le i &lt; j &lt; k \le N$</li>
+<li>$A_i,A_j,和A_k都是不同的数$</li>
+</ul>
+<h3 id="题目分析-4">题目分析</h3>
+<p>时间复杂度：$O(1)$。</p>
+<p>利用<strong>容斥原理</strong>。</p>
+<p>不考虑$A_i,A_j,A_k$中有重复的元素，求出所有的方案数。<strong>在</strong>$ \ N \ $<strong>个物品中选3个物品</strong>，可以用$C_N^3$求的。</p>
+<p>然后考虑$A_i,A_j,A_k$中有重复的个数：</p>
+<ul>
+<li>对于$ \ A \ $中每一个数$x$，我们用$cnt[x]$录$x$出现的次数</li>
+<li>对于$cnt[x] \ge 2$的情况，先排除$x,x,y$的情况，即有<strong>两个重复</strong>的元素，$C_{cntx}^2$：从$cnt[x]$（$x$的个数）中选择2个相同的元素，$(N - cnt_x)$：排除$x$的个数后，从剩下的数中选择1个数。对于这种情况答案要减去$C_{cntx}^2 \times (N - cnt_x)$。</li>
+<li>对于$cnt[x] \ge 3$的情况，先排除$x,x,x$的情况，即有<strong>三个重复</strong>的元素，$C_{cntx}^3$从$cnt[x]$（$x$的个数）中选择3个相同的元素。对于这种情况答案要减去$C_{cntx}^3$。</li>
+</ul>
+<p>$Code$</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; mp;  <span class="comment">// 用map代替cnt数组</span></span><br><span class="line">	</span><br><span class="line">	cin &gt;&gt; n;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++ )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> x;</span><br><span class="line">		cin &gt;&gt; x;</span><br><span class="line">		mp[x] ++ ;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	LL ans = (LL)n * (n - <span class="number">1</span>) * (n - <span class="number">2</span>) / <span class="number">6</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> item : mp)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(item.y &gt;= <span class="number">2</span>) ans -= (LL)item.y * (item.y - <span class="number">1</span>) / <span class="number">2</span> * (n - item.y);</span><br><span class="line">		<span class="keyword">if</span>(item.y &gt;= <span class="number">3</span>) ans -= (LL)item.y * (item.y - <span class="number">1</span>) * (item.y - <span class="number">2</span>) / <span class="number">6</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line"> </span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>$ \ $<br>
+$ \ $</p>
+<h2 id="E">E</h2>
+<h3 id="题目描述-5">题目描述</h3>
+<p>AtCoder的国王有$ \ N \ $个城市，$M$条道路。</p>
+<p>每一条道路连接着$ \ A_i \ $和$ \ B_i \ $两座城市，之间的距离为$ \ C_i \ $。</p>
+<p>一定能通过一些道路到达任一城市。</p>
+<p>在财政困难下，国王决定保留$N - 1$条道路，使得从城市1开始到其他的距离最短。</p>
+<p>求出要保留的道路。</p>
+<h3 id="题目分析-5">题目分析</h3>
+<p>时间复杂度：$O(NlogN + MlogN)$。</p>
+<p>保留$N - 1$条道路就提示我们该题应该是<strong>最小生成树</strong>的模型。</p>
+<p>要求从城市1开始到其他距离最短提示我们要用<strong>最短路</strong>模型</p>
+<p>于是我们就可以先跑一遍<strong>dijsktra</strong>，求出<strong>城市1到其它点的最短距离</strong>。</p>
+<p>再枚举每个点$ \ x \ $以及它下一个点$ \ j \ $,之间的距离$w[i]$，如果<strong>满足</strong><code>dist[x] == dist[j] + w[i]</code>则说明它是由最短路求得的，同时它也在最小生成树中。</p>
+<p>$ \ $</p>
+<p><strong>[提示]</strong>：每次记得看看数据，被龙龙卡麻了-。 -</p>
+<p>$Code$</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> LL;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">200010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="type">int</span> h[N], id[N &lt;&lt; <span class="number">1</span>], e[N &lt;&lt; <span class="number">1</span>], ne[N &lt;&lt; <span class="number">1</span>], w[N &lt;&lt; <span class="number">1</span>], idx;</span><br><span class="line"><span class="type">bool</span> st[N];</span><br><span class="line">LL dist[N];  <span class="comment">// 注意题目中的数据</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b, <span class="type">int</span> c, <span class="type">int</span> d)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	e[idx] = b, id[idx] = d, w[idx] = c, ne[idx] = h[a], h[a] = idx ++ ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dijkstra</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(dist, <span class="number">0x3f</span>, <span class="keyword">sizeof</span> dist);</span><br><span class="line">	dist[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">	priority_queue&lt;PII, vector&lt;PII&gt;, greater&lt;PII&gt;&gt; q;</span><br><span class="line">	q.<span class="built_in">push</span>(&#123;<span class="number">0</span>, <span class="number">1</span>&#125;);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>(q.<span class="built_in">size</span>())</span><br><span class="line">	&#123;</span><br><span class="line">		PII t = q.<span class="built_in">top</span>();</span><br><span class="line">		q.<span class="built_in">pop</span>();</span><br><span class="line">		</span><br><span class="line">		<span class="type">int</span> ver = t.y, distance = t.x;</span><br><span class="line">		<span class="keyword">if</span>(st[ver]) <span class="keyword">continue</span>;</span><br><span class="line">		st[ver] = <span class="literal">true</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i = h[ver]; ~i; i = ne[i])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="type">int</span> j = e[i];</span><br><span class="line">			</span><br><span class="line">			<span class="comment">// 不能写distance + w[i]</span></span><br><span class="line">			<span class="comment">// 因为distance不会变，但是dist[ver]可能会被后面入队的更新 </span></span><br><span class="line">			<span class="keyword">if</span>(dist[j] &gt; dist[ver] + w[i])</span><br><span class="line">			&#123;</span><br><span class="line">				dist[j] = dist[ver] + w[i];</span><br><span class="line">				q.<span class="built_in">push</span>(&#123;dist[j], j&#125;);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;n, &amp;m);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">memset</span>(h, <span class="number">-1</span>, <span class="keyword">sizeof</span> h);</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i ++ )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> a, b, c;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>, &amp;a, &amp;b, &amp;c);</span><br><span class="line">		<span class="built_in">add</span>(a, b, c, i), <span class="built_in">add</span>(b, a, c, i);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">dijkstra</span>();</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> x = <span class="number">2</span>; x &lt;= n; x ++ )  <span class="comment">// 枚举每个点</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="type">int</span> i = h[x]; ~i; i = ne[i])  <span class="comment">// 枚举出边</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="type">int</span> j = e[i];</span><br><span class="line">			<span class="keyword">if</span>(dist[x] == dist[j] + w[i])  <span class="comment">// 判断条件</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, id[i]);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>$ \ $<br>
+$ \ $</p>
+<h2 id="F">F</h2>
+<h3 id="题目描述-6">题目描述</h3>
+<p>现在有长度为$ \ L \ $的面包，需要切分并分配给$ \ N \ $个小朋友。</p>
+<p>每个小朋友$ \ i \ $，需要长度为$ \ A_i \ $的面包。</p>
+<p>现在高桥将进行如下操作将面包切分：</p>
+<ul>
+<li>选择长度为$ \ k \ $的面包，在$x$位置下将面包分为长度为$ \ x \ $以及长度为$ \ k - x \ $的两条</li>
+<li>需要花费$ \ k \ $的价值</li>
+</ul>
+<p>每一个小朋友都必须得到长度为$A_i$的面包，允许有遗留下来的面包。</p>
+<p>找到满足小朋友需求的最小花费。</p>
+<h3 id="题目分析-6">题目分析</h3>
+<p>时间复杂度：$O(1)$。</p>
+<p>将长度为$ \ k \ $的面包<strong>切成两半</strong>，<strong>需要花费</strong>的价值为$ \ k \ $，转过来一想，<strong>合并两块</strong>总长度为$ \ k \ $的面包<strong>需要花费</strong>的价值也是$ \ k \ $。</p>
+<p>于是将一条长度为$ \ k \ $的面包需要花多少代价才能变为$a_1,a_2,…,a_n$转变为$a_1,a_2,…,a_n$需要花多少代价才能合并为长度为$ \ k \ $的面包。</p>
+<p>这就转为了 <a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/150/">合并果子</a> 的这道题。</p>
+<p>$ \ $</p>
+<p><strong>[提示]</strong>：每次记得看看数据，被龙龙卡麻了-。 -</p>
+<p>$Code$</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> LL;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">200010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, l;</span><br><span class="line">LL a[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; l;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]);</span><br><span class="line">		l -= a[i];</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	priority_queue&lt;LL, vector&lt;LL&gt;, greater&lt;LL&gt;&gt; q;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i ++ ) q.<span class="built_in">push</span>(a[i]);</span><br><span class="line">	<span class="keyword">if</span>(l) q.<span class="built_in">push</span>(l);</span><br><span class="line">	</span><br><span class="line">	LL res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(q.<span class="built_in">size</span>() &gt; <span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		LL a = q.<span class="built_in">top</span>();</span><br><span class="line">		q.<span class="built_in">pop</span>();</span><br><span class="line">		LL b = q.<span class="built_in">top</span>();</span><br><span class="line">		q.<span class="built_in">pop</span>();</span><br><span class="line">		res += a + b;</span><br><span class="line">		q.<span class="built_in">push</span>(a + b);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	cout &lt;&lt; res &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">JasonQian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/06/10/AtCoder-Beginner-Contest-252-A%E2%80%94F/">http://example.com/2022/06/10/AtCoder-Beginner-Contest-252-A%E2%80%94F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">JasonQian's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/AtCoder%E9%A2%98%E8%A7%A3%E9%9B%86/">AtCoder题解集</a></div><div class="post_share"><div class="social-share" data-image="https://www.jasonqian.com/img/menhera_22.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/06/08/AtCoder-Beginner-Contest-254-A%E2%80%94D/"><img class="next-cover" src="https://www.jasonqian.com/img/menhera_10.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">AtCoder Beginner Contest 254   A—D</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/05/29/AtCoder-Beginner-Contest-253-A%E2%80%94E/" title="AtCoder Beginner Contest 253   A—E"><img class="cover" src="https://www.jasonqian.com/img/menhera_10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-29</div><div class="title">AtCoder Beginner Contest 253   A—E</div></div></a></div><div><a href="/2022/06/08/AtCoder-Beginner-Contest-254-A%E2%80%94D/" title="AtCoder Beginner Contest 254   A—D"><img class="cover" src="https://www.jasonqian.com/img/menhera_10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-08</div><div class="title">AtCoder Beginner Contest 254   A—D</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://www.jasonqian.com/img/menhera_1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">JasonQian</div><div class="author-info__description">1.048596</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Jason-Qian993" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">帰り道が長い</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#A"><span class="toc-number">1.</span> <span class="toc-text">A</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">题目分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#B"><span class="toc-number">2.</span> <span class="toc-text">B</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-2"><span class="toc-number">2.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90-2"><span class="toc-number">2.2.</span> <span class="toc-text">题目分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C"><span class="toc-number">3.</span> <span class="toc-text">C</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-3"><span class="toc-number">3.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90-3"><span class="toc-number">3.2.</span> <span class="toc-text">题目分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#D"><span class="toc-number">4.</span> <span class="toc-text">D</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-4"><span class="toc-number">4.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90-4"><span class="toc-number">4.2.</span> <span class="toc-text">题目分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#E"><span class="toc-number">5.</span> <span class="toc-text">E</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-5"><span class="toc-number">5.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90-5"><span class="toc-number">5.2.</span> <span class="toc-text">题目分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#F"><span class="toc-number">6.</span> <span class="toc-text">F</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0-6"><span class="toc-number">6.1.</span> <span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90-6"><span class="toc-number">6.2.</span> <span class="toc-text">题目分析</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/06/10/AtCoder-Beginner-Contest-252-A%E2%80%94F/" title="AtCoder Beginner Contest 252   A—F"><img src="https://www.jasonqian.com/img/menhera_22.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AtCoder Beginner Contest 252   A—F"/></a><div class="content"><a class="title" href="/2022/06/10/AtCoder-Beginner-Contest-252-A%E2%80%94F/" title="AtCoder Beginner Contest 252   A—F">AtCoder Beginner Contest 252   A—F</a><time datetime="2022-06-10T07:20:49.000Z" title="发表于 2022-06-10 15:20:49">2022-06-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/08/AtCoder-Beginner-Contest-254-A%E2%80%94D/" title="AtCoder Beginner Contest 254   A—D"><img src="https://www.jasonqian.com/img/menhera_10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AtCoder Beginner Contest 254   A—D"/></a><div class="content"><a class="title" href="/2022/06/08/AtCoder-Beginner-Contest-254-A%E2%80%94D/" title="AtCoder Beginner Contest 254   A—D">AtCoder Beginner Contest 254   A—D</a><time datetime="2022-06-08T01:46:44.000Z" title="发表于 2022-06-08 09:46:44">2022-06-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/06/08/%E7%AC%AC%E5%8D%81%E5%9B%9B%E5%91%A8%E5%A4%8D%E7%9B%98/" title="第十四周复盘"><img src="https://www.jasonqian.com/img/menhera_21.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第十四周复盘"/></a><div class="content"><a class="title" href="/2022/06/08/%E7%AC%AC%E5%8D%81%E5%9B%9B%E5%91%A8%E5%A4%8D%E7%9B%98/" title="第十四周复盘">第十四周复盘</a><time datetime="2022-06-08T01:46:10.000Z" title="发表于 2022-06-08 09:46:10">2022-06-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/30/%E7%AC%AC%E5%8D%81%E4%B8%89%E5%91%A8%E5%A4%8D%E7%9B%98/" title="第十三周复盘"><img src="https://www.jasonqian.com/img/menhera_25.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="第十三周复盘"/></a><div class="content"><a class="title" href="/2022/05/30/%E7%AC%AC%E5%8D%81%E4%B8%89%E5%91%A8%E5%A4%8D%E7%9B%98/" title="第十三周复盘">第十三周复盘</a><time datetime="2022-05-30T02:52:12.000Z" title="发表于 2022-05-30 10:52:12">2022-05-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/05/29/AtCoder-Beginner-Contest-253-A%E2%80%94E/" title="AtCoder Beginner Contest 253   A—E"><img src="https://www.jasonqian.com/img/menhera_10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="AtCoder Beginner Contest 253   A—E"/></a><div class="content"><a class="title" href="/2022/05/29/AtCoder-Beginner-Contest-253-A%E2%80%94E/" title="AtCoder Beginner Contest 253   A—E">AtCoder Beginner Contest 253   A—E</a><time datetime="2022-05-29T15:43:41.000Z" title="发表于 2022-05-29 23:43:41">2022-05-29</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By JasonQian</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
