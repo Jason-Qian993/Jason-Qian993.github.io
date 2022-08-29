@@ -1,0 +1,1329 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>现代杨答案 | JasonQian's Blog</title><meta name="keywords" content="高数"><meta name="author" content="JasonQian"><meta name="copyright" content="JasonQian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="线性代数例题+练习答案  来自QQ：1654475081大佬Orz的分析，仅做复习时查看使用。  第一章 行列式 例题：  $1-a^4$ B -5 略 $2^{n+1}-2$ D C 2 $\frac{1}{2}$ -2 1 3 0 -27 288 B D -1 1.5 (1-2：1:00:35) C 4 24 21 -1 $a^2(a-2^n)$ $-\sqrt 2 &lt; t&lt; \s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="现代杨答案">
+<meta property="og:url" content="http://example.com/2022/08/29/%E7%8E%B0%E4%BB%A3%E6%9D%A8%E7%AD%94%E6%A1%88/index.html">
+<meta property="og:site_name" content="JasonQian&#39;s Blog">
+<meta property="og:description" content="线性代数例题+练习答案  来自QQ：1654475081大佬Orz的分析，仅做复习时查看使用。  第一章 行列式 例题：  $1-a^4$ B -5 略 $2^{n+1}-2$ D C 2 $\frac{1}{2}$ -2 1 3 0 -27 288 B D -1 1.5 (1-2：1:00:35) C 4 24 21 -1 $a^2(a-2^n)$ $-\sqrt 2 &lt; t&lt; \s">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.jasonqian.com/img/menhera_4.jpg">
+<meta property="article:published_time" content="2022-08-29T13:37:12.000Z">
+<meta property="article:modified_time" content="2022-08-29T13:39:59.660Z">
+<meta property="article:author" content="JasonQian">
+<meta property="article:tag" content="高数">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.jasonqian.com/img/menhera_4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/08/29/%E7%8E%B0%E4%BB%A3%E6%9D%A8%E7%AD%94%E6%A1%88/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '现代杨答案',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-29 21:39:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.1.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://www.jasonqian.com/img/menhera_1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://www.jasonqian.com/img/menhera_4.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">JasonQian's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">现代杨答案</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-29T13:37:12.000Z" title="发表于 2022-08-29 21:37:12">2022-08-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-29T13:39:59.660Z" title="更新于 2022-08-29 21:39:59">2022-08-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="现代杨答案"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1>线性代数例题+练习答案</h1>
+<blockquote>
+<p>来自QQ：1654475081大佬Orz的分析，仅做复习时查看使用。</p>
+</blockquote>
+<h2 id="第一章-行列式-2">第一章 行列式</h2>
+<h3 id="例题：">例题：</h3>
+<ol>
+<li>$1-a^4$</li>
+<li>B</li>
+<li>-5</li>
+<li>略</li>
+<li>$2^{n+1}-2$</li>
+<li>D</li>
+<li>C</li>
+<li>2</li>
+<li>$\frac{1}{2}$</li>
+<li>-2</li>
+<li>1</li>
+<li>3</li>
+<li>0</li>
+<li>-27</li>
+<li>288</li>
+<li>B</li>
+<li>D</li>
+<li>-1</li>
+<li>1.5</li>
+<li>(1-2：1:00:35)</li>
+<li>C</li>
+<li>4</li>
+<li>24</li>
+<li>21</li>
+<li>-1</li>
+<li>$a^2(a-2^n)$</li>
+<li>$-\sqrt 2 &lt; t&lt; \sqrt 2$</li>
+</ol>
+<h3 id="练习：">练习：</h3>
+<ol>
+<li>$a^2(a^2-4)$</li>
+<li>B</li>
+<li>$\lambda^4+\lambda^3+2\lambda^2+3\lambda+4$</li>
+<li>$(n-1)(-1)^{n-1}$</li>
+<li>40</li>
+<li>2</li>
+<li>当n为奇数 |B|=2006，当n为偶数 |B| =  0</li>
+<li>4</li>
+<li>27</li>
+<li>-48</li>
+<li>3</li>
+<li>6</li>
+<li>$\frac{\sqrt 3}{3}$</li>
+<li>$x=[1,0,0,……,0]^T$</li>
+<li>-4</li>
+<li>$-\frac{7}{60}$</li>
+<li>(1-3: 47:25)</li>
+<li>(1-3: 51:00)</li>
+<li>A</li>
+<li>-7</li>
+<li>-1</li>
+<li>3</li>
+<li>4</li>
+<li>-4</li>
+<li>$(-3)^{n-r}*(-1)^r$</li>
+<li>2</li>
+<li>0</li>
+</ol>
+<h2 id="第二章-矩阵">第二章 矩阵</h2>
+<h3 id="例题：-2">例题：</h3>
+<ol>
+<li>
+<p>$$<br>
+\begin{bmatrix}<br>
+2&amp;4&amp;6 \<br>
+-3&amp;-6&amp;-9 \<br>
+1&amp;2&amp;3<br>
+\end{bmatrix}<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+\begin{bmatrix}<br>
+1&amp;0&amp;0 \<br>
+3n&amp;1&amp;0 \<br>
+12n^2-11n&amp;8n&amp;1<br>
+\end{bmatrix}<br>
+$$</p>
+</li>
+<li>
+<p><strong>0</strong></p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>$\frac{1}{30}A^T$</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>-E</p>
+</li>
+<li>
+<p>$\frac{1}{2} (A+2E)$</p>
+</li>
+<li>
+<p>未找到 求（e+b）-1</p>
+</li>
+<li>
+<p>$$<br>
+(1)a=0\<br>
+(2)<br>
+\begin{bmatrix}<br>
+3&amp;1&amp;-2 \<br>
+1&amp;1&amp;-1 \<br>
+2&amp;1&amp;-1<br>
+\end{bmatrix}<br>
+$$</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>$$<br>
+当k为偶数：0\<br>
+当k为奇数：A^{k-1}<br>
+$$</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>$$<br>
+\begin{bmatrix}<br>
+6067&amp;4045&amp;2023 \<br>
+8&amp;1&amp;3 \<br>
+3&amp;2&amp;1<br>
+\end{bmatrix}<br>
+$$</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>2</p>
+</li>
+<li>
+<p>1</p>
+</li>
+<li>
+<p>ABCD</p>
+</li>
+<li>
+<p>2</p>
+</li>
+<li>
+<p>C</p>
+</li>
+</ol>
+<h3 id="练习：-2">练习：</h3>
+<ol>
+<li>
+<p>$$<br>
+3^{n-1}<br>
+\begin{bmatrix}<br>
+1&amp;\frac{1}{2}&amp;\frac{1}{3} \<br>
+2&amp;1&amp;\frac{2}{3} \<br>
+3&amp;\frac{3}{2}&amp;1<br>
+\end{bmatrix}<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+\begin{bmatrix}<br>
+3&amp;&amp; \<br>
+&amp;3&amp; \<br>
+&amp;&amp;-1<br>
+\end{bmatrix}<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+\begin{bmatrix}<br>
+-1&amp;0&amp;0 \<br>
+0&amp;1&amp;0\<br>
+0&amp;0&amp;0<br>
+\end{bmatrix}<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+\begin{bmatrix}<br>
+2&amp;-3&amp;2 \<br>
+-3&amp;2&amp;-2 \<br>
+-6&amp;6&amp;-5<br>
+\end{bmatrix}<br>
+$$</p>
+</li>
+<li>
+<p>-1</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>3</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>$$<br>
+\frac{1}{10}<br>
+\begin{bmatrix}<br>
+1&amp;0&amp;0 \<br>
+2&amp;2&amp;0 \<br>
+3&amp;4&amp;5<br>
+\end{bmatrix}<br>
+$$</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>-1</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>$$<br>
+\begin{bmatrix}<br>
+6&amp;0&amp;0&amp;0 \<br>
+0&amp;6&amp;0&amp;0 \<br>
+6&amp;0&amp;6&amp;0 \<br>
+0&amp;3&amp;0&amp;-1<br>
+\end{bmatrix}<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+\begin{bmatrix}<br>
+1&amp;0&amp;0&amp;0 \<br>
+-2&amp;1&amp;0&amp;0 \<br>
+1&amp;-2&amp;1&amp;0 \<br>
+0&amp;1&amp;-2&amp;1<br>
+\end{bmatrix}<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+\begin{bmatrix}<br>
+1&amp;2&amp;5 \<br>
+0&amp;1&amp;2 \<br>
+0&amp;0&amp;1<br>
+\end{bmatrix}<br>
+$$</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>-3</p>
+</li>
+<li>
+<p>2</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>1</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>2</p>
+</li>
+</ol>
+<h2 id="第三章-向量">第三章 向量</h2>
+<h3 id="例题：-3">例题：</h3>
+<ol>
+<li>
+<p>$$<br>
+(1)a=5\<br>
+(2)<br>
+\beta_1 = 2\alpha_1+4\alpha_2-\alpha_3\<br>
+\beta_2 = \alpha_1+2\alpha_2\<br>
+\beta_3 = 5\alpha_1 + 10\alpha_2-2\alpha_3<br>
+$$</p>
+</li>
+<li>
+<p>(3-2:  00:04:31)</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>(3-2:  00:15:37)</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>$$<br>
+(1)(3-2:  00:28:23) \<br>
+(2)<br>
+\begin{bmatrix}<br>
+-1&amp;0&amp;0 \<br>
+0&amp;1&amp;1 \<br>
+0&amp;0&amp;1<br>
+\end{bmatrix}<br>
+$$</p>
+</li>
+<li>
+<p>(3-2:  00:34:47)</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>(3-2:  00:48:53)</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>(3-2:  01:21:15)</p>
+</li>
+<li>
+<p>(3-2:  01:25:00)</p>
+</li>
+<li>
+<p>(3-2:  01:28:36)</p>
+</li>
+</ol>
+<h3 id="练习：-3">练习：</h3>
+<ol>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>$$<br>
+(1)a\ne-1\<br>
+(2)a=-1<br>
+$$</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>(3-3:  00:12:25)</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>$\frac{1}{2}$</p>
+</li>
+<li>
+<p>(3-3:  00:24:38)</p>
+</li>
+<li>
+<p>2</p>
+</li>
+<li>
+<p>(3-3:  00:30:13)</p>
+</li>
+<li>
+<p>$$<br>
+a = 15\<br>
+b = 5<br>
+$$</p>
+</li>
+<li>
+<p>(3-3:  00:35:37)</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>6</p>
+</li>
+<li>
+<p>$$<br>
+\begin{bmatrix}<br>
+5k \<br>
+7k \<br>
+\end{bmatrix}<br>
+K为任意常数<br>
+$$</p>
+</li>
+<li>
+<p>$[1,-4,3]^T$</p>
+</li>
+<li>
+<p>A</p>
+</li>
+</ol>
+<h2 id="第四章-线性方程组">第四章 线性方程组</h2>
+<h3 id="例题：-4">例题：</h3>
+<ol>
+<li>
+<p>$$<br>
+(4-2: 00:00:00)\<br>
+(1)0\</p>
+<p>(2)a=-1\<br>
+k[1,1,1,1]^T + [0,-1,0,0]^T,k为任意常数<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-2: 00:06:37)\<br>
+(1)0\</p>
+<p>(2)<br>
+k[0,-1,1]^T + [1,-2,0]^T,k为任意常数<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-2: 00:11:54)\<br>
+a \ne -1\<br>
+\beta_3 = \alpha_1 -\alpha_2 + \alpha_3<br>
+$$</p>
+</li>
+<li>
+<p>1</p>
+</li>
+<li>
+<p>$$<br>
+(4-2: 00:23:26)\<br>
+x = k[-2,-1,1]^T,k为任意常数\<br>
+f = y_1^2+y_2^2<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-2: 00:29:15)\<br>
+(1)\<br>
+(2)a\ne0,x_1 = \frac{n}{(n+1)a}\<br>
+(3)a=0,通解：k[1,0,0,……，0]^T+[0,1,0,……,0]^T，k为任意常数<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-2: 00:36:38)\<br>
+当a\ne b且(n-1)b+a \ne 0时，仅有零解\<br>
+当a=b时，k_1\xi_1 + k_2\xi_2 + ……+k_{n-1}\xi_{n-1}\<br>
+当(n-1)b+a = 0时，k\xi<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-2: 00:41:42)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-2: 00:45:29)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-2: 00:47:37)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-2: 00:52:19)\<br>
+$$</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>$$<br>
+(4-2: 01:02:59)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-2: 01:05:27)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-2: 01:10:51)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-2: 01:15:31)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-2: 01:22:21)\<br>
+$$</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>$$<br>
+(4-2: 01:59:00)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-2: 02:06:10)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-2: 02:13:34)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-2: 02:15:19)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-2: 02:19:30)\<br>
+$$</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>B</p>
+</li>
+</ol>
+<h3 id="练习：-4">练习：</h3>
+<ol>
+<li>
+<p>$$<br>
+(4-3: 00:00:00)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-3: 00:04:11)\<br>
+$$</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>$$<br>
+(4-3: 00:13:38)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-3: 00:16:14)\<br>
+$$</p>
+</li>
+<li>
+<p>-1</p>
+</li>
+<li>
+<p>1</p>
+</li>
+<li>
+<p>$$<br>
+(4-3: 00:23:53)\<br>
+$$</p>
+</li>
+<li>
+<p>$k(1,-2,1)^T,k为任意常数$</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>$k(1,1,……,1)^T，k为任意常数$</p>
+</li>
+<li>
+<p>$k(-13,-6,1,8)^T+(\frac{1}{4},\frac{1}{2},\frac{3}{4},1)^T,k为任意常数$</p>
+</li>
+<li>
+<p>$k(1,2,3)^T+(1,3,0)^T,k为任意常数$</p>
+</li>
+<li>
+<p>$c(3,-1,1,-2)^T+(2,-1,0,3)^T,c为任意常数$</p>
+</li>
+<li>
+<p>$$<br>
+(4-3: 00:59:37)\<br>
+\begin{bmatrix}<br>
+3&amp;3&amp;6 \<br>
+-2&amp;-2&amp;-4 \<br>
+1&amp;1&amp;2<br>
+\end{bmatrix}<br>
+$$</p>
+</li>
+<li>
+<p>$[1,0,0]^T$</p>
+</li>
+<li>
+<p>$$<br>
+(4-3: 01:06:08)\<br>
+$$</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>$$<br>
+(4-3: 01:28:04)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-3: 01:32:45)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-3: 01:46:37)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(4-3: 01:49:05)\<br>
+$$</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>C</p>
+</li>
+</ol>
+<h2 id="第五章-特征值与特征向量">第五章 特征值与特征向量</h2>
+<h3 id="例题：-5">例题：</h3>
+<ol>
+<li>
+<p>$$<br>
+(5-2: 00:00:00)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 00:03:05)\<br>
+$$</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 00:16:22)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 00:28:00)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 00:37:35)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 00:44:46)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 00:56:21)\<br>
+$$</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 01:07:19)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 01:12:52)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 01:18:24)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 01:25:31)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 01:31:34)\<br>
+$$</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>5（①②③④⑤）</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 02:00:51)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 02:23:18)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 02:30:38)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 02:41:49)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 02:52:48)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 02:56:35)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 03:00:21)\<br>
+$$</p>
+</li>
+</ol>
+<h3 id="练习：-5">练习：</h3>
+<ol>
+<li>
+<p>$$<br>
+(5-3: 00:00:00)<br>
+$$</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>1</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>4</p>
+</li>
+<li>
+<p>2</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>2</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 00:37:59)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 00:40:35)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 00:43:48)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 00:46:29)\<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 00:50:04)\<br>
+$$</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>8</p>
+</li>
+<li>
+<p>-1</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>$$<br>
+(5-2: 01:13:42)\<br>
+$$</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>$(-3)^{n-r}*(-1)^r$</p>
+</li>
+<li>
+<p>B</p>
+</li>
+</ol>
+<h2 id="第六章-二次型">第六章 二次型</h2>
+<h3 id="例题：-6">例题：</h3>
+<ol>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>A</p>
+</li>
+<li>
+<p>$$<br>
+(6-2: 00:16:10)<br>
+$$</p>
+</li>
+<li>
+<p>1</p>
+</li>
+<li>
+<p>$3y_1^2$</p>
+</li>
+<li>
+<p>$$<br>
+(6-2: 00:33:57)<br>
+$$</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>C</p>
+</li>
+<li>
+<p>2</p>
+</li>
+<li>
+<p>$$<br>
+(6-2: 00:46:00)<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(6-2: 00:54:58)<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(6-2: 00:58:04)<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(6-2: 01:07:14)<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(6-2: 01:13:20)<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(6-2: 01:20:15)<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(6-2: 01:30:44)<br>
+$$</p>
+</li>
+<li>
+<p>$-2\le  a\le 2$</p>
+</li>
+<li>
+<p>$$<br>
+(6-2: 01:39:30)<br>
+$$</p>
+</li>
+<li>
+<p>D</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>D</p>
+</li>
+</ol>
+<h3 id="练习：-6">练习：</h3>
+<ol>
+<li>
+<p>2</p>
+</li>
+<li>
+<p>$$<br>
+(6-3: 00:01:46)<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(6-3: 00:05:44)<br>
+$$</p>
+</li>
+<li>
+<p>$-\sqrt 2 \lt t \lt \sqrt 2$</p>
+</li>
+<li>
+<p>$$<br>
+(6-3: 00:11:55)<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(6-3: 00:17:32)<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(6-3: 00:20:05)<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(6-3: 00:23:52)<br>
+$$</p>
+</li>
+<li>
+<p>$$<br>
+(6-3: 00:29:55)<br>
+$$</p>
+</li>
+<li>
+<p>B</p>
+</li>
+<li>
+<p>$$<br>
+(6-3: 00:36:05)<br>
+$$</p>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">JasonQian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2022/08/29/%E7%8E%B0%E4%BB%A3%E6%9D%A8%E7%AD%94%E6%A1%88/">http://example.com/2022/08/29/%E7%8E%B0%E4%BB%A3%E6%9D%A8%E7%AD%94%E6%A1%88/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">JasonQian's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E9%AB%98%E6%95%B0/">高数</a></div><div class="post_share"><div class="social-share" data-image="https://www.jasonqian.com/img/menhera_4.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/08/29/%E7%8E%B0%E4%BB%A3%E6%9D%A8/"><img class="next-cover" src="https://www.jasonqian.com/img/menhera_6.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">现代杨</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2022/06/27/660%E4%B9%A0%E9%A2%98%E9%9B%86/" title="660习题集"><img class="cover" src="https://www.jasonqian.com/img/menhera_24.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-06-27</div><div class="title">660习题集</div></div></a></div><div><a href="/2022/07/06/880%E4%B9%A0%E9%A2%98%E9%9B%86/" title="880习题集"><img class="cover" src="https://www.jasonqian.com/img/menhera_21.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-06</div><div class="title">880习题集</div></div></a></div><div><a href="/2022/03/23/%E4%B8%89%E8%A7%92%E5%85%AC%E5%BC%8F/" title="三角公式"><img class="cover" src="https://www.jasonqian.com/img/menhera_22.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-23</div><div class="title">三角公式</div></div></a></div><div><a href="/2022/04/01/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86-%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0%E7%9A%84%E7%A7%AF%E5%88%86/" title="不定积分--三角函数的积分"><img class="cover" src="https://www.jasonqian.com/img/menhera_11.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-01</div><div class="title">不定积分--三角函数的积分</div></div></a></div><div><a href="/2022/04/10/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86-%E6%8D%A2%E5%85%83%E6%B3%95-%E5%88%86%E9%83%A8%E7%A7%AF%E5%88%86/" title="不定积分-换元法-分部积分"><img class="cover" src="https://www.jasonqian.com/img/menhera_28.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-10</div><div class="title">不定积分-换元法-分部积分</div></div></a></div><div><a href="/2022/03/29/%E4%B8%8D%E5%AE%9A%E7%A7%AF%E5%88%86-%E6%9C%89%E7%90%86%E5%87%BD%E6%95%B0%E7%9A%84%E7%A7%AF%E5%88%86/" title="不定积分--有理函数的积分"><img class="cover" src="https://www.jasonqian.com/img/menhera_19.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-29</div><div class="title">不定积分--有理函数的积分</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://www.jasonqian.com/img/menhera_1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">JasonQian</div><div class="author-info__description">1.048596</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Jason-Qian993" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">帰り道が長い</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">线性代数例题+练习答案</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E8%A1%8C%E5%88%97%E5%BC%8F-2"><span class="toc-number">1.1.</span> <span class="toc-text">第一章 行列式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%EF%BC%9A"><span class="toc-number">1.1.1.</span> <span class="toc-text">例题：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%EF%BC%9A"><span class="toc-number">1.1.2.</span> <span class="toc-text">练习：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%9F%A9%E9%98%B5"><span class="toc-number">1.2.</span> <span class="toc-text">第二章 矩阵</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%EF%BC%9A-2"><span class="toc-number">1.2.1.</span> <span class="toc-text">例题：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%EF%BC%9A-2"><span class="toc-number">1.2.2.</span> <span class="toc-text">练习：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%90%91%E9%87%8F"><span class="toc-number">1.3.</span> <span class="toc-text">第三章 向量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%EF%BC%9A-3"><span class="toc-number">1.3.1.</span> <span class="toc-text">例题：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%EF%BC%9A-3"><span class="toc-number">1.3.2.</span> <span class="toc-text">练习：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E7%BA%BF%E6%80%A7%E6%96%B9%E7%A8%8B%E7%BB%84"><span class="toc-number">1.4.</span> <span class="toc-text">第四章 线性方程组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%EF%BC%9A-4"><span class="toc-number">1.4.1.</span> <span class="toc-text">例题：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%EF%BC%9A-4"><span class="toc-number">1.4.2.</span> <span class="toc-text">练习：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E7%89%B9%E5%BE%81%E5%80%BC%E4%B8%8E%E7%89%B9%E5%BE%81%E5%90%91%E9%87%8F"><span class="toc-number">1.5.</span> <span class="toc-text">第五章 特征值与特征向量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%EF%BC%9A-5"><span class="toc-number">1.5.1.</span> <span class="toc-text">例题：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%EF%BC%9A-5"><span class="toc-number">1.5.2.</span> <span class="toc-text">练习：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E4%BA%8C%E6%AC%A1%E5%9E%8B"><span class="toc-number">1.6.</span> <span class="toc-text">第六章 二次型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98%EF%BC%9A-6"><span class="toc-number">1.6.1.</span> <span class="toc-text">例题：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%83%E4%B9%A0%EF%BC%9A-6"><span class="toc-number">1.6.2.</span> <span class="toc-text">练习：</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/08/29/%E7%8E%B0%E4%BB%A3%E6%9D%A8%E7%AD%94%E6%A1%88/" title="现代杨答案"><img src="https://www.jasonqian.com/img/menhera_4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="现代杨答案"/></a><div class="content"><a class="title" href="/2022/08/29/%E7%8E%B0%E4%BB%A3%E6%9D%A8%E7%AD%94%E6%A1%88/" title="现代杨答案">现代杨答案</a><time datetime="2022-08-29T13:37:12.000Z" title="发表于 2022-08-29 21:37:12">2022-08-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/29/%E7%8E%B0%E4%BB%A3%E6%9D%A8/" title="现代杨"><img src="https://www.jasonqian.com/img/menhera_6.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="现代杨"/></a><div class="content"><a class="title" href="/2022/08/29/%E7%8E%B0%E4%BB%A3%E6%9D%A8/" title="现代杨">现代杨</a><time datetime="2022-08-29T13:37:07.000Z" title="发表于 2022-08-29 21:37:07">2022-08-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/08/09/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E8%87%AA%E6%B5%8B/" title="数学公式自测"><img src="https://www.jasonqian.com/img/menhera_14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数学公式自测"/></a><div class="content"><a class="title" href="/2022/08/09/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E8%87%AA%E6%B5%8B/" title="数学公式自测">数学公式自测</a><time datetime="2022-08-09T09:09:49.000Z" title="发表于 2022-08-09 17:09:49">2022-08-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/08/%E5%91%A8%E9%B8%BD%E9%B8%BD%E7%9A%84%E5%BC%BA%E5%8C%96%E4%B9%A0%E9%A2%98/" title="周鸽鸽的强化习题"><img src="https://www.jasonqian.com/img/menhera_23.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="周鸽鸽的强化习题"/></a><div class="content"><a class="title" href="/2022/07/08/%E5%91%A8%E9%B8%BD%E9%B8%BD%E7%9A%84%E5%BC%BA%E5%8C%96%E4%B9%A0%E9%A2%98/" title="周鸽鸽的强化习题">周鸽鸽的强化习题</a><time datetime="2022-07-08T13:32:20.000Z" title="发表于 2022-07-08 21:32:20">2022-07-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/07/06/880%E4%B9%A0%E9%A2%98%E9%9B%86/" title="880习题集"><img src="https://www.jasonqian.com/img/menhera_21.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="880习题集"/></a><div class="content"><a class="title" href="/2022/07/06/880%E4%B9%A0%E9%A2%98%E9%9B%86/" title="880习题集">880习题集</a><time datetime="2022-07-06T10:27:31.000Z" title="发表于 2022-07-06 18:27:31">2022-07-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By JasonQian</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
