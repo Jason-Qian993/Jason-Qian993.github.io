@@ -1,0 +1,434 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>XCodec | JasonQian's Blog</title><meta name="author" content="JasonQian"><meta name="copyright" content="JasonQian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="XCodec 作用：编码和解码的基类 1234567891011121314151617181920212223242526272829303132#pragma once#include &lt;mutex&gt;#include &lt;vector&gt;extern &quot;C&quot; &amp;#123;#include &lt;libavcodec&#x2F;avcodec.h&gt;#incl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XCodec">
+<meta property="og:url" content="http://example.com/2024/07/22/XCodec/index.html">
+<meta property="og:site_name" content="JasonQian&#39;s Blog">
+<meta property="og:description" content="XCodec 作用：编码和解码的基类 1234567891011121314151617181920212223242526272829303132#pragma once#include &lt;mutex&gt;#include &lt;vector&gt;extern &quot;C&quot; &amp;#123;#include &lt;libavcodec&#x2F;avcodec.h&gt;#incl">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.jasonqian.com/img/menhera_23.jpg">
+<meta property="article:published_time" content="2024-07-22T07:51:14.000Z">
+<meta property="article:modified_time" content="2024-07-22T07:51:42.223Z">
+<meta property="article:author" content="JasonQian">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.jasonqian.com/img/menhera_23.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/07/22/XCodec/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'XCodec',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-07-22 15:51:42'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/runtime.min.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://www.jasonqian.com/img/menhera_1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://www.jasonqian.com/img/menhera_23.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">JasonQian's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">XCodec</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-07-22T07:51:14.000Z" title="发表于 2024-07-22 15:51:14">2024-07-22</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-07-22T07:51:42.223Z" title="更新于 2024-07-22 15:51:42">2024-07-22</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="XCodec"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="XCodec">XCodec</h2>
+<p>作用：编码和解码的基类</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mutex&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;libavcodec/avcodec.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;libavutil/avutil.h&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">AVCodecContext</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">AVPacket</span>;</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">AVFrame</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">XCodec</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="type">static</span> AVCodecContext* <span class="title">Create</span><span class="params">(<span class="type">int</span> codec_id, <span class="type">bool</span> is_encode)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="type">void</span> <span class="title">set_c</span><span class="params">(AVCodecContext* c)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="type">bool</span> <span class="title">SetOpt</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* key, <span class="type">const</span> <span class="type">char</span>* val)</span></span>;</span><br><span class="line">	<span class="function"><span class="type">bool</span> <span class="title">SetOpt</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* key, <span class="type">int</span> val)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="type">bool</span> <span class="title">Open</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="function">AVFrame *<span class="title">CreateFrame</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	AVCodecContext* c_ = <span class="literal">nullptr</span>;  <span class="comment">// 编码器上下文</span></span><br><span class="line">	std::mutex mux_;  <span class="comment">// 编码器上下文锁</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="参数介绍">参数介绍</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">	AVCodecContext* c_ = <span class="literal">nullptr</span>;  <span class="comment">// 编码器上下文</span></span><br><span class="line">	std::mutex mux_;  <span class="comment">// 编码器上下文锁</span></span><br></pre></td></tr></table></figure>
+<h2 id="XCodec-cpp">XCodec.cpp</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;xcodec.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;xtools.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;libavcodec/avcodec.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;libavutil/opt.h&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> comment(lib, <span class="string">&quot;avcodec.lib&quot;</span>)</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> comment(lib, <span class="string">&quot;avutil.lib&quot;</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="function">AVCodecContext* <span class="title">XCodec::Create</span><span class="params">(<span class="type">int</span> codec_id, <span class="type">bool</span> is_encode)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">const</span> AVCodec *codec = <span class="literal">nullptr</span>;</span><br><span class="line">	<span class="keyword">if</span>(is_encode)</span><br><span class="line">		codec = <span class="built_in">avcodec_find_encoder</span>((AVCodecID)codec_id);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		codec = <span class="built_in">avcodec_find_decoder</span>((AVCodecID)codec_id);</span><br><span class="line">	<span class="keyword">if</span> (!codec)</span><br><span class="line">	&#123;</span><br><span class="line">		cerr &lt;&lt; <span class="string">&quot;avcodec_find_encoder failed!  &quot;</span> &lt;&lt; codec_id &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">auto</span> c = <span class="built_in">avcodec_alloc_context3</span>(codec);</span><br><span class="line">	<span class="keyword">if</span> (!c)</span><br><span class="line">	&#123;</span><br><span class="line">		cerr &lt;&lt; <span class="string">&quot;avcodec_alloc_context3 failed!  &quot;</span> &lt;&lt; codec_id &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	c-&gt;time_base = &#123; <span class="number">1</span>, <span class="number">25</span> &#125;;</span><br><span class="line">	c-&gt;pix_fmt = AV_PIX_FMT_YUV420P;</span><br><span class="line">	c-&gt;thread_count = <span class="number">16</span>;</span><br><span class="line">    </span><br><span class="line">	<span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">XCodec::set_c</span><span class="params">(AVCodecContext* c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">unique_lock&lt;mutex&gt; <span class="title">lock</span><span class="params">(mux_)</span></span>;</span><br><span class="line">	<span class="keyword">if</span> (c_)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">avcodec_free_context</span>(&amp;c_);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">this</span>-&gt;c_ = c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">XCodec::SetOpt</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* key, <span class="type">const</span> <span class="type">char</span>* val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">unique_lock&lt;mutex&gt; <span class="title">lock</span><span class="params">(mux_)</span></span>;</span><br><span class="line">	<span class="keyword">if</span> (!c_) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">auto</span> re = <span class="built_in">av_opt_set</span>(c_-&gt;priv_data, key, val, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span> (re != <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		cerr &lt;&lt; <span class="string">&quot;av_opt_set failed!&quot;</span>;</span><br><span class="line">		<span class="built_in">PrintErr</span>(re);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">XCodec::SetOpt</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* key, <span class="type">int</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">unique_lock&lt;mutex&gt; <span class="title">lock</span><span class="params">(mux_)</span></span>;</span><br><span class="line">	<span class="keyword">if</span> (!c_) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">auto</span> re = <span class="built_in">av_opt_set_int</span>(c_-&gt;priv_data, key, val, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span> (re != <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		cerr &lt;&lt; <span class="string">&quot;av_opt_set failed!&quot;</span>;</span><br><span class="line">		<span class="built_in">PrintErr</span>(re);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">XCodec::Open</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">unique_lock&lt;mutex&gt; <span class="title">lock</span><span class="params">(mux_)</span></span>;</span><br><span class="line">	<span class="keyword">if</span> (!c_) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">auto</span> re = <span class="built_in">avcodec_open2</span>(c_, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">	<span class="keyword">if</span> (re != <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">PrintErr</span>(re);</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">AVFrame* <span class="title">XCodec::CreateFrame</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">unique_lock&lt;mutex&gt; <span class="title">lock</span><span class="params">(mux_)</span></span>;</span><br><span class="line">	<span class="keyword">if</span> (!c_) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">auto</span> frame = <span class="built_in">av_frame_alloc</span>();</span><br><span class="line">	frame-&gt;width = c_-&gt;width;</span><br><span class="line">	frame-&gt;height = c_-&gt;height;</span><br><span class="line">	frame-&gt;format = c_-&gt;pix_fmt;</span><br><span class="line">	<span class="keyword">auto</span> re = <span class="built_in">av_frame_get_buffer</span>(frame, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span> (re != <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">av_frame_free</span>(&amp;frame);</span><br><span class="line">		<span class="built_in">PrintErr</span>(re);</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> frame;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Create">Create()</h3>
+<p>作用：</p>
+<ul>
+<li>
+<p>创建编解码上下文</p>
+</li>
+<li>
+<p>@para codec_id 编码器Id号对于ffmpeg</p>
+</li>
+<li>
+<p>@return AVCodecContext 编码器上下文，失败返回nullptr</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">AVCodecContext* <span class="title">XCodec::Create</span><span class="params">(<span class="type">int</span> codec_id, <span class="type">bool</span> is_encode)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">// 1. 找到编码器 or 解码器</span></span><br><span class="line">    <span class="comment">// 根据is_encode来判断，如果为true找编码器，false找解码器</span></span><br><span class="line">	<span class="type">const</span> AVCodec *codec = <span class="literal">nullptr</span>;</span><br><span class="line">	<span class="keyword">if</span>(is_encode)</span><br><span class="line">		codec = <span class="built_in">avcodec_find_encoder</span>((AVCodecID)codec_id);</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		codec = <span class="built_in">avcodec_find_decoder</span>((AVCodecID)codec_id);</span><br><span class="line">	<span class="keyword">if</span> (!codec)</span><br><span class="line">	&#123;</span><br><span class="line">		cerr &lt;&lt; <span class="string">&quot;avcodec_find_encoder failed!  &quot;</span> &lt;&lt; codec_id &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 2. 为编码器\解码器创建上下文</span></span><br><span class="line">	<span class="keyword">auto</span> c = <span class="built_in">avcodec_alloc_context3</span>(codec);</span><br><span class="line">	<span class="keyword">if</span> (!c)</span><br><span class="line">	&#123;</span><br><span class="line">		cerr &lt;&lt; <span class="string">&quot;avcodec_alloc_context3 failed!  &quot;</span> &lt;&lt; codec_id &lt;&lt; endl;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 3. 设置参数默认值</span></span><br><span class="line">	c-&gt;time_base = &#123; <span class="number">1</span>, <span class="number">25</span> &#125;;  <span class="comment">// 时间基准</span></span><br><span class="line">	c-&gt;pix_fmt = AV_PIX_FMT_YUV420P;</span><br><span class="line">	c-&gt;thread_count = <span class="number">16</span>;  <span class="comment">// 线程数</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>编码器\解码器上下文</strong>：</p>
+<p>在 FFmpeg 中，<code>AVCodecContext</code> 是一个非常重要的结构体，用于存储编解码器的上下文信息。这个上下文包含了大量关于编解码器的配置、状态和其他重要的信息，用于控制和管理音视频的编码和解码过程。</p>
+<p>作用和功能：</p>
+<ol>
+<li><strong>参数配置</strong>：
+<ul>
+<li><code>AVCodecContext</code> 包含了编码或解码过程中需要的大量参数，例如编码器的比特率、帧率、分辨率、采样率、像素格式等。这些参数可以通过 <code>AVCodecContext</code> 进行设置和调整，以控制编解码器的行为。</li>
+</ul>
+</li>
+<li><strong>状态管理</strong>：
+<ul>
+<li>编解码器的状态信息（如当前处理的帧、缓冲区状态等）都保存在 <code>AVCodecContext</code> 中。在编码或解码过程中，上下文会随着处理的进展而更新，确保每一步都能正确进行。</li>
+</ul>
+</li>
+<li><strong>资源管理</strong>：
+<ul>
+<li><code>AVCodecContext</code> 还负责管理编解码过程中使用的各种资源，包括内部的缓冲区、滤波器、线程等。这些资源在上下文被分配时初始化，并在上下文被释放时清理。</li>
+</ul>
+</li>
+<li><strong>接口与扩展</strong>：
+<ul>
+<li>通过 <code>AVCodecContext</code>，用户可以调用 FFmpeg 提供的各种接口函数，如 <code>avcodec_open2</code>、<code>avcodec_send_packet</code>、<code>avcodec_receive_frame</code> 等。这些函数以上下文为参数，执行具体的编解码操作。</li>
+</ul>
+</li>
+</ol>
+<h3 id="set-c">set_c()</h3>
+<p>作用：用于将创建的上下文c赋值给类中的上下文c_，若传入的参数为nullptr，则相当于清理上下文资源。</p>
+<p>设置对象的编码器上下文 上下文传递到对象中，资源由XEncode维护<br>
+线程安全 需要+锁<br>
+@para c 编码器上下文 如果c_不为nullptr，则先清理资源，然后再赋值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">XCodec::set_c</span><span class="params">(AVCodecContext* c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">unique_lock&lt;mutex&gt; <span class="title">lock</span><span class="params">(mux_)</span></span>;</span><br><span class="line">	<span class="keyword">if</span> (c_)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">avcodec_free_context</span>(&amp;c_);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">this</span>-&gt;c_ = c;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="SetOpt-——接受字符串参数">SetOpt()——接受字符串参数</h3>
+<p>作用：用于设置编解码器上下文的选项</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">XCodec::SetOpt</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* key, <span class="type">const</span> <span class="type">char</span>* val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">unique_lock&lt;mutex&gt; <span class="title">lock</span><span class="params">(mux_)</span></span>;</span><br><span class="line">	<span class="keyword">if</span> (!c_) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    	auto re = av_opt_set(c_-&gt;priv_data, key, val, 0);：调用 av_opt_set 函数设置选项。</span></span><br><span class="line"><span class="comment">    	av_opt_set 用于设置 AVClass 对象的选项。</span></span><br><span class="line"><span class="comment">    	</span></span><br><span class="line"><span class="comment">		c_-&gt;priv_data：指向编解码器私有数据的指针。</span></span><br><span class="line"><span class="comment">		key：要设置的选项的名称。</span></span><br><span class="line"><span class="comment">		val：要设置的选项的值。</span></span><br><span class="line"><span class="comment">		0：标志参数，通常为 0。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">	<span class="keyword">auto</span> re = <span class="built_in">av_opt_set</span>(c_-&gt;priv_data, key, val, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span> (re != <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		cerr &lt;&lt; <span class="string">&quot;av_opt_set failed!&quot;</span>;</span><br><span class="line">		<span class="built_in">PrintErr</span>(re);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>av_opt_set(c_-&gt;priv_data, key, val, 0)</code>其中的<code>key</code>，<code>val</code>参数</p>
+<p>视频编码器常用选项</p>
+<ol>
+<li><strong><code>preset</code></strong>：
+<ul>
+<li><strong>描述</strong>：预设选项，用于快速配置编码器的参数，影响编码速度和质量。</li>
+<li><strong>可能值</strong>：<code>ultrafast</code>, <code>superfast</code>, <code>veryfast</code>, <code>faster</code>, <code>fast</code>, <code>medium</code>, <code>slow</code>, <code>slower</code>, <code>veryslow</code></li>
+<li><strong>示例</strong>：<code>key = &quot;preset&quot;</code>, <code>val = &quot;fast&quot;</code></li>
+</ul>
+</li>
+<li><strong><code>crf</code></strong>（适用于如 <code>libx264</code> 编码器）：
+<ul>
+<li><strong>描述</strong>：恒定质量参数，控制视频的质量与文件大小之间的平衡。</li>
+<li><strong>可能值</strong>：范围从 0 到 51，值越小质量越高，文件越大。</li>
+<li><strong>示例</strong>：<code>key = &quot;crf&quot;</code>, <code>val = &quot;23&quot;</code></li>
+</ul>
+</li>
+<li><strong><code>bitrate</code></strong>：
+<ul>
+<li><strong>描述</strong>：目标比特率，控制视频的编码比特率。</li>
+<li><strong>可能值</strong>：任何正整数，通常以 <code>k</code> 为单位表示。</li>
+<li><strong>示例</strong>：<code>key = &quot;bitrate&quot;</code>, <code>val = &quot;2000k&quot;</code></li>
+</ul>
+</li>
+<li><strong><code>profile</code></strong>：
+<ul>
+<li><strong>描述</strong>：编码器的配置档案。</li>
+<li><strong>可能值</strong>：<code>baseline</code>, <code>main</code>, <code>high</code></li>
+<li><strong>示例</strong>：<code>key = &quot;profile&quot;</code>, <code>val = &quot;high&quot;</code></li>
+</ul>
+</li>
+<li><strong><code>g</code></strong>（GOP 大小）：
+<ul>
+<li><strong>描述</strong>：关键帧间隔，控制两个关键帧之间的帧数。</li>
+<li><strong>可能值</strong>：任何正整数。</li>
+<li><strong>示例</strong>：<code>key = &quot;g&quot;</code>, <code>val = &quot;250&quot;</code></li>
+</ul>
+</li>
+</ol>
+<p>音频编码器常用选项</p>
+<ol>
+<li><strong><code>bit_rate</code></strong>：
+<ul>
+<li><strong>描述</strong>：目标音频比特率。</li>
+<li><strong>可能值</strong>：任何正整数，通常以 <code>k</code> 为单位表示。</li>
+<li><strong>示例</strong>：<code>key = &quot;bit_rate&quot;</code>, <code>val = &quot;128k&quot;</code></li>
+</ul>
+</li>
+<li><strong><code>sample_rate</code></strong>：
+<ul>
+<li><strong>描述</strong>：音频采样率。</li>
+<li><strong>可能值</strong>：常见值有 <code>44100</code>, <code>48000</code>, <code>96000</code> 等。</li>
+<li><strong>示例</strong>：<code>key = &quot;sample_rate&quot;</code>, <code>val = &quot;44100&quot;</code></li>
+</ul>
+</li>
+<li><strong><code>channels</code></strong>：
+<ul>
+<li><strong>描述</strong>：音频通道数。</li>
+<li><strong>可能值</strong>：<code>1</code>（单声道）, <code>2</code>（立体声）</li>
+<li><strong>示例</strong>：<code>key = &quot;channels&quot;</code>, <code>val = &quot;2&quot;</code></li>
+</ul>
+</li>
+</ol>
+<p>其他常用选项</p>
+<ol>
+<li><strong><code>threads</code></strong>：
+<ul>
+<li><strong>描述</strong>：线程数量，控制编码或解码时使用的线程数量。</li>
+<li><strong>可能值</strong>：任何正整数。</li>
+<li><strong>示例</strong>：<code>key = &quot;threads&quot;</code>, <code>val = &quot;4&quot;</code></li>
+</ul>
+</li>
+<li><strong><code>max_b_frames</code></strong>：
+<ul>
+<li><strong>描述</strong>：最大 B 帧数量。</li>
+<li><strong>可能值</strong>：任何正整数。</li>
+<li><strong>示例</strong>：<code>key = &quot;max_b_frames&quot;</code>, <code>val = &quot;2&quot;</code></li>
+</ul>
+</li>
+</ol>
+<h3 id="SetOpt-——接收整数参数">SetOpt()——接收整数参数</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">XCodec::SetOpt</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* key, <span class="type">int</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">unique_lock&lt;mutex&gt; <span class="title">lock</span><span class="params">(mux_)</span></span>;</span><br><span class="line">	<span class="keyword">if</span> (!c_) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">auto</span> re = <span class="built_in">av_opt_set_int</span>(c_-&gt;priv_data, key, val, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span> (re != <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		cerr &lt;&lt; <span class="string">&quot;av_opt_set failed!&quot;</span>;</span><br><span class="line">		<span class="built_in">PrintErr</span>(re);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="上述SetOpt-的区别">上述SetOpt()的区别</h3>
+<ol>
+<li><strong>参数类型</strong>：
+<ul>
+<li>之前的 <code>SetOpt</code> 函数接受字符串类型的选项值，适用于设置那些需要字符串的选项（如编码器预设、编码配置档案等）。</li>
+<li>新的 <code>SetOpt</code> 函数接受整数类型的选项值，适用于设置那些需要整数的选项（如比特率、线程数量、GOP 大小等）。</li>
+</ul>
+</li>
+<li><strong>使用的 FFmpeg 函数</strong>：
+<ul>
+<li>之前的 <code>SetOpt</code> 函数使用 <code>av_opt_set</code> 来设置字符串类型的选项。</li>
+<li>新的 <code>SetOpt</code> 函数使用 <code>av_opt_set_int</code> 来设置整数类型的选项。</li>
+</ul>
+</li>
+</ol>
+<p>示例</p>
+<p>以下是使用两个 <code>SetOpt</code> 函数的示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cpp复制代码XCodec codec;</span><br><span class="line"></span><br><span class="line">// 设置字符串类型的选项</span><br><span class="line">codec.SetOpt(&quot;preset&quot;, &quot;fast&quot;);        // 设置编码预设</span><br><span class="line">codec.SetOpt(&quot;profile&quot;, &quot;high&quot;);       // 设置编码档案</span><br><span class="line"></span><br><span class="line">// 设置整数类型的选项</span><br><span class="line">codec.SetOpt(&quot;bitrate&quot;, 2000000);      // 设置目标比特率（单位：比特）</span><br><span class="line">codec.SetOpt(&quot;threads&quot;, 4);            // 设置线程数量</span><br><span class="line">codec.SetOpt(&quot;g&quot;, 250);                // 设置关键帧间隔</span><br></pre></td></tr></table></figure>
+<p>在这些示例中，<code>SetOpt</code> 函数被用来设置各种编解码器选项，以配置编码和解码行为。通过这些选项，可以灵活地控制编码和解码的参数，满足具体的音视频处理需求。</p>
+<h3 id="Open">Open()</h3>
+<p>作用：打开解码器，线程安全</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">XCodec::Open</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">unique_lock&lt;mutex&gt; <span class="title">lock</span><span class="params">(mux_)</span></span>;</span><br><span class="line">	<span class="keyword">if</span> (!c_) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">		用于打开指定的编解码器，以便进行视频或音频的编码或解码。</span></span><br><span class="line"><span class="comment">		它的作用是将编解码器上下文与实际的编解码器关联起来，从而使得该上下文可以用于编码或解码操作。</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	<span class="keyword">auto</span> re = <span class="built_in">avcodec_open2</span>(c_, <span class="literal">NULL</span>, <span class="literal">NULL</span>);</span><br><span class="line">	<span class="keyword">if</span> (re != <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">PrintErr</span>(re);</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>avcodec_open2</code> 是 FFmpeg 库中的一个函数，用于初始化一个编解码器上下文，以便进行编码或解码操作。该函数会根据指定的编解码器打开 <code>AVCodecContext</code>，并分配必要的资源。</p>
+<p>函数原型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int avcodec_open2(AVCodecContext *avctx, const AVCodec *codec, AVDictionary **options);</span><br></pre></td></tr></table></figure>
+<p>参数解释</p>
+<ol>
+<li><strong><code>AVCodecContext *avctx</code></strong>：
+<ul>
+<li>指向要初始化的编解码器上下文的指针。这个上下文必须已经通过 <code>avcodec_alloc_context3</code> 分配，并设置了基本参数。</li>
+</ul>
+</li>
+<li><strong><code>const AVCodec *codec</code></strong>：
+<ul>
+<li>指向要使用的编解码器的指针。如果传递 <code>NULL</code>，则使用上下文中已经设置的编解码器。</li>
+</ul>
+</li>
+<li><code>AVDictionary **options</code>：
+<ul>
+<li>一个指向字典的指针，用于传递额外的选项和参数。如果不需要传递额外的选项，可以传递 <code>NULL</code>。</li>
+</ul>
+</li>
+</ol>
+<p>示例解释</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cpp</span><br><span class="line">复制代码</span><br><span class="line">int result = avcodec_open2(c_, NULL, NULL);</span><br></pre></td></tr></table></figure>
+<p>在这个示例中：</p>
+<ul>
+<li><code>c_</code>：指向要初始化的 <code>AVCodecContext</code> 的指针。</li>
+<li><code>NULL</code>（第一个）：表示使用上下文中已经设置的编解码器。</li>
+<li><code>NULL</code>（第二个）：表示没有额外的选项需要传递。</li>
+</ul>
+<h3 id="CreateFrame">CreateFrame()</h3>
+<p>作用：根据AVcodecContext 创建一个AVFrame 需要调用者释放av_frame_free</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">AVFrame* <span class="title">XCodec::CreateFrame</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">unique_lock&lt;mutex&gt; <span class="title">lock</span><span class="params">(mux_)</span></span>;</span><br><span class="line">	<span class="keyword">if</span> (!c_) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">auto</span> frame = <span class="built_in">av_frame_alloc</span>();</span><br><span class="line">	frame-&gt;width = c_-&gt;width;</span><br><span class="line">	frame-&gt;height = c_-&gt;height;</span><br><span class="line">	frame-&gt;format = c_-&gt;pix_fmt;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// auto re = av_frame_get_buffer(frame, 0);</span></span><br><span class="line">    <span class="comment">// 调用 av_frame_get_buffer 为帧分配缓冲区，以存储帧的数据。</span></span><br><span class="line">    <span class="comment">// 第二个参数 0 表示使用默认对齐方式。</span></span><br><span class="line">	<span class="keyword">auto</span> re = <span class="built_in">av_frame_get_buffer</span>(frame, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">if</span> (re != <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">av_frame_free</span>(&amp;frame);</span><br><span class="line">		<span class="built_in">PrintErr</span>(re);</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> frame;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过 <code>AVCodecContext</code> 创建 <code>AVFrame</code> 可以确保帧的参数与编解码器的参数一致，简化编码和解码流程，保证资源分配正确，并提高数据处理效率。这样可以有效减少编码和解码过程中可能出现的错误，提高程序的稳定性和性能。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">JasonQian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/07/22/XCodec/">http://example.com/2024/07/22/XCodec/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">JasonQian's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://www.jasonqian.com/img/menhera_23.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/07/22/XSDL/"><img class="next-cover" src="https://www.jasonqian.com/img/menhera_3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">XSDL</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://www.jasonqian.com/img/menhera_1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">JasonQian</div><div class="author-info__description">1.048596</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">32</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Jason-Qian993" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">帰り道が長い</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#XCodec"><span class="toc-number">1.</span> <span class="toc-text">XCodec</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">参数介绍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#XCodec-cpp"><span class="toc-number">2.</span> <span class="toc-text">XCodec.cpp</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create"><span class="toc-number">2.1.</span> <span class="toc-text">Create()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#set-c"><span class="toc-number">2.2.</span> <span class="toc-text">set_c()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SetOpt-%E2%80%94%E2%80%94%E6%8E%A5%E5%8F%97%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8F%82%E6%95%B0"><span class="toc-number">2.3.</span> <span class="toc-text">SetOpt()——接受字符串参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SetOpt-%E2%80%94%E2%80%94%E6%8E%A5%E6%94%B6%E6%95%B4%E6%95%B0%E5%8F%82%E6%95%B0"><span class="toc-number">2.4.</span> <span class="toc-text">SetOpt()——接收整数参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E8%BF%B0SetOpt-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.5.</span> <span class="toc-text">上述SetOpt()的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Open"><span class="toc-number">2.6.</span> <span class="toc-text">Open()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CreateFrame"><span class="toc-number">2.7.</span> <span class="toc-text">CreateFrame()</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/07/22/XCodec/" title="XCodec"><img src="https://www.jasonqian.com/img/menhera_23.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="XCodec"/></a><div class="content"><a class="title" href="/2024/07/22/XCodec/" title="XCodec">XCodec</a><time datetime="2024-07-22T07:51:14.000Z" title="发表于 2024-07-22 15:51:14">2024-07-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/07/22/XSDL/" title="XSDL"><img src="https://www.jasonqian.com/img/menhera_3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="XSDL"/></a><div class="content"><a class="title" href="/2024/07/22/XSDL/" title="XSDL">XSDL</a><time datetime="2024-07-22T07:14:55.000Z" title="发表于 2024-07-22 15:14:55">2024-07-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/07/22/XVideoView/" title="XVideoView"><img src="https://www.jasonqian.com/img/menhera_5.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="XVideoView"/></a><div class="content"><a class="title" href="/2024/07/22/XVideoView/" title="XVideoView">XVideoView</a><time datetime="2024-07-22T02:21:31.000Z" title="发表于 2024-07-22 10:21:31">2024-07-22</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/06/19/ffmpeg/" title="ffmpeg"><img src="https://www.jasonqian.com/img/menhera_28.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ffmpeg"/></a><div class="content"><a class="title" href="/2024/06/19/ffmpeg/" title="ffmpeg">ffmpeg</a><time datetime="2024-06-19T03:32:06.000Z" title="发表于 2024-06-19 11:32:06">2024-06-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/04/08/Qt/" title="Qt"><img src="https://www.jasonqian.com/img/menhera_13.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Qt"/></a><div class="content"><a class="title" href="/2024/04/08/Qt/" title="Qt">Qt</a><time datetime="2024-04-08T03:49:54.000Z" title="发表于 2024-04-08 11:49:54">2024-04-08</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By JasonQian</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用多线部署，主线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="http://www.beian.gov.cn/portal/recordQuery" style="margin-inline:5px" data-title="网站备案" title=""><img src="https://img.shields.io/badge/渝公网安备-50011802010611号-blue?style=flat&amp;logo=备案" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="/js/runtime.js"></script><!-- hexo injector body_end end --></body></html>
