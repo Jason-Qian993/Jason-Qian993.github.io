@@ -1,0 +1,329 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>SDL播放YUV格式视频 | JasonQian's Blog</title><meta name="author" content="JasonQian"><meta name="copyright" content="JasonQian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="代码 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879#include &quot;sdlqtrgb.h&quot;#include &lt;sdl&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SDL播放YUV格式视频">
+<meta property="og:url" content="http://example.com/2024/08/11/SDL%E6%92%AD%E6%94%BEYUV%E6%A0%BC%E5%BC%8F%E8%A7%86%E9%A2%91/index.html">
+<meta property="og:site_name" content="JasonQian&#39;s Blog">
+<meta property="og:description" content="代码 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879#include &quot;sdlqtrgb.h&quot;#include &lt;sdl&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.jasonqian.com/img/menhera_12.jpg">
+<meta property="article:published_time" content="2024-08-11T02:13:42.000Z">
+<meta property="article:modified_time" content="2024-08-11T02:14:22.149Z">
+<meta property="article:author" content="JasonQian">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.jasonqian.com/img/menhera_12.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/08/11/SDL%E6%92%AD%E6%94%BEYUV%E6%A0%BC%E5%BC%8F%E8%A7%86%E9%A2%91/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SDL播放YUV格式视频',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-08-11 10:14:22'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/runtime.min.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://www.jasonqian.com/img/menhera_1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://www.jasonqian.com/img/menhera_12.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">JasonQian's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">SDL播放YUV格式视频</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-08-11T02:13:42.000Z" title="发表于 2024-08-11 10:13:42">2024-08-11</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-11T02:14:22.149Z" title="更新于 2024-08-11 10:14:22">2024-08-11</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="SDL播放YUV格式视频"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="代码">代码</h2>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;sdlqtrgb.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sdl/SDL.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;QMessageBox&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fstream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> comment(lib, <span class="string">&quot;SDL2.lib&quot;</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> sdl_width = <span class="number">0</span>;</span><br><span class="line"><span class="type">static</span> <span class="type">int</span> sdl_height = <span class="number">0</span>;</span><br><span class="line"><span class="type">static</span> SDL_Window* sdl_win = <span class="literal">nullptr</span>;</span><br><span class="line"><span class="type">static</span> SDL_Renderer* sdl_render = <span class="literal">nullptr</span>;</span><br><span class="line"><span class="type">static</span> SDL_Texture* sdl_texture = <span class="literal">nullptr</span>;</span><br><span class="line"><span class="type">static</span> <span class="type">unsigned</span> <span class="type">char</span>* yuv = <span class="literal">nullptr</span>;</span><br><span class="line"><span class="type">static</span> <span class="type">int</span> pix_size = <span class="number">4</span>;</span><br><span class="line"><span class="type">static</span> std::ifstream yuv_file;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">SdlQtRgb::<span class="built_in">SdlQtRgb</span>(QWidget *parent)</span><br><span class="line">	: <span class="built_in">QWidget</span>(parent)</span><br><span class="line">&#123;</span><br><span class="line">	ui.<span class="built_in">setupUi</span>(<span class="keyword">this</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// =====（1）=====</span></span><br><span class="line">	yuv_file.<span class="built_in">open</span>(<span class="string">&quot;400_300_25.yuv&quot;</span>, std::ios::binary);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (!yuv_file)</span><br><span class="line">	&#123;</span><br><span class="line">		QMessageBox::<span class="built_in">information</span>(<span class="keyword">this</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;open yuv failed!&quot;</span>);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	sdl_width = <span class="number">400</span>;</span><br><span class="line">	sdl_height = <span class="number">300</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">this</span>-&gt;<span class="built_in">resize</span>(sdl_width, sdl_height);</span><br><span class="line">	ui.label-&gt;<span class="built_in">resize</span>(sdl_width, sdl_height);</span><br><span class="line">	ui.label-&gt;<span class="built_in">move</span>(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">SDL_Init</span>(SDL_INIT_VIDEO);</span><br><span class="line"></span><br><span class="line">	sdl_win = <span class="built_in">SDL_CreateWindowFrom</span>((<span class="type">void</span>*)ui.label-&gt;<span class="built_in">winId</span>());</span><br><span class="line"></span><br><span class="line">	sdl_render = <span class="built_in">SDL_CreateRenderer</span>(sdl_win, <span class="number">-1</span>, SDL_RENDERER_ACCELERATED);</span><br><span class="line"></span><br><span class="line">	sdl_texture = <span class="built_in">SDL_CreateTexture</span>(sdl_render,</span><br><span class="line">        <span class="comment">// =====（二）=====</span></span><br><span class="line">		SDL_PIXELFORMAT_IYUV,</span><br><span class="line">		SDL_TEXTUREACCESS_STREAMING,</span><br><span class="line">		sdl_width,</span><br><span class="line">		sdl_height</span><br><span class="line">	);</span><br><span class="line"></span><br><span class="line">	yuv = <span class="keyword">new</span> <span class="type">unsigned</span> <span class="type">char</span>[sdl_width * sdl_height * pix_size];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">startTimer</span>(<span class="number">30</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">SdlQtRgb::timerEvent</span><span class="params">(QTimerEvent *ev)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// =====（三）=====</span></span><br><span class="line">	yuv_file.<span class="built_in">read</span>((<span class="type">char</span>*)yuv, sdl_width * sdl_height * <span class="number">1.5</span>);</span><br><span class="line"></span><br><span class="line">	<span class="built_in">SDL_UpdateTexture</span>(sdl_texture, <span class="literal">NULL</span>, yuv, sdl_width);</span><br><span class="line">	<span class="built_in">SDL_RenderClear</span>(sdl_render);</span><br><span class="line">	SDL_Rect rect;</span><br><span class="line">	rect.x = <span class="number">0</span>;</span><br><span class="line">	rect.y = <span class="number">0</span>;</span><br><span class="line">	rect.w = sdl_width;</span><br><span class="line">	rect.h = sdl_height;</span><br><span class="line">	<span class="built_in">SDL_RenderCopy</span>(sdl_render, sdl_texture, <span class="literal">NULL</span>, &amp;rect);</span><br><span class="line">	<span class="built_in">SDL_RenderPresent</span>(sdl_render);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SdlQtRgb::~<span class="built_in">SdlQtRgb</span>()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 清理和释放SDL所使用的资源</span></span><br><span class="line">	<span class="built_in">SDL_Quit</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="（一）">（一）</h3>
+<p>为什么要用binary打开文件？</p>
+<p>以二进制模式打开文件是为了确保文件内容按原始字节读取或写入，而不经过任何修改或转换。</p>
+<p>在文本模式下（即不使用 <code>std::ios::binary</code> 时），文件的读写操作可能会受到操作系统的影响，特别是在处理不同操作系统的换行符时</p>
+<h3 id="（二）">（二）</h3>
+<p><code>SDL_PIXELFORMAT_IYUV</code>格式？</p>
+<p><code>SDL_PIXELFORMAT_IYUV</code> 是 SDL 库中定义的一种像素格式，表示 YUV420P 格式的图像数据。它是一种压缩的 YUV 格式，通常用于视频和图像处理。下面是对 <code>SDL_PIXELFORMAT_IYUV</code> 的详细介绍：</p>
+<ol>
+<li><strong>YUV 颜色空间</strong>：</li>
+</ol>
+<ul>
+<li><strong>Y</strong> 表示亮度分量（Luminance），它决定了图像的亮度或灰度级别。</li>
+<li><strong>U 和 V</strong> 表示色度分量（Chrominance），它们共同描述了图像的颜色信息。</li>
+<li>YUV <strong>格式通过分离亮度和色度来减少数据量，这在视频压缩和传输中非常有效。</strong></li>
+</ul>
+<ol start="2">
+<li><strong>YUV420P 格式</strong>：</li>
+</ol>
+<ul>
+<li><strong>YUV420P</strong> 是一种常见的 YUV 格式，其中亮度（Y）分量的分辨率与原图一致，而色度（U 和 V）分量的分辨率是亮度的四分之一。</li>
+<li><strong>IYUV 和 YV12</strong> 都是 YUV420P 的变种，它们的区别在于 U 和 V 分量的存储顺序。</li>
+</ul>
+<ol start="3">
+<li><strong>IYUV 格式的结构</strong>：</li>
+</ol>
+<ul>
+<li>在 <code>IYUV</code> 格式中，图像数据按平面（Plane）排列：
+<ul>
+<li><strong>Y 平面</strong>：首先存储所有像素的亮度信息，大小为 <code>width * height</code> 字节。</li>
+<li><strong>U 平面</strong>：接下来存储所有 U 分量数据，大小为 <code>width/2 * height/2</code> 字节。</li>
+<li><strong>V 平面</strong>：最后存储所有 V 分量数据，大小同样为 <code>width/2 * height/2</code> 字节。</li>
+<li><strong>存储</strong>：YYYYYYYY UUUU VVVV</li>
+</ul>
+</li>
+<li>这意味着对于一个 <code>400x300</code> 的图像，IYUV 格式的数据结构如下：
+<ul>
+<li><strong>Y 分量</strong>：400x300 = 120,000 字节</li>
+<li><strong>U 分量</strong>：200x150 = 30,000 字节</li>
+<li><strong>V 分量</strong>：200x150 = 30,000 字节</li>
+<li><strong>总数据量</strong>：120,000 + 30,000 + 30,000 = 180,000 字节</li>
+</ul>
+</li>
+</ul>
+<ol start="4">
+<li><strong>与 YV12 的区别</strong>：</li>
+</ol>
+<ul>
+<li><strong>IYUV</strong>：在内存中按 Y -&gt; U -&gt; V 的顺序存储。</li>
+<li><strong>YV12</strong>：在内存中按 Y -&gt; V -&gt; U 的顺序存储。</li>
+</ul>
+<ol start="5">
+<li><strong>在 SDL 中的使用</strong>：</li>
+</ol>
+<ul>
+<li><code>SDL_PIXELFORMAT_IYUV</code> 在 SDL 中用于处理、显示和转换视频帧。开发者可以使用 SDL 的渲染函数（如 <code>SDL_UpdateTexture</code>）来显示这种格式的图像。</li>
+<li>这种格式被广泛用于视频解码和播放，因为它比 RGB 更节省存储空间和带宽。</li>
+</ul>
+<ol start="6">
+<li><strong>应用场景</strong>：</li>
+</ol>
+<ul>
+<li><strong>视频播放</strong>：IYUV 格式常用于视频解码器输出的数据格式，适合直接传递给视频渲染器。</li>
+<li><strong>视频传输和存储</strong>：由于其数据压缩特性，YUV420 格式在视频编码中很常见，例如在 MPEG、H.264 等视频编码标准中。</li>
+</ul>
+<h3 id="（三）">（三）</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yuv_file.<span class="built_in">read</span>((<span class="type">char</span>*)yuv, sdl_width * sdl_height * <span class="number">1.5</span>);</span><br></pre></td></tr></table></figure>
+<p>这里$\times 1.5$为什么？</p>
+<p>具体解释：</p>
+<p>YUV 格式的图像数据通常分为三个平面：</p>
+<ol>
+<li><strong>Y 分量（亮度信息，Luminance）</strong>：每个像素都有一个 Y 分量，因此 Y 平面的大小是图像的宽度乘以高度（<code>sdl_width * sdl_height</code>）。</li>
+<li><strong>U 分量（色度信息，Chrominance）</strong>：U 分量平面通常是 Y 平面大小的四分之一（<code>sdl_width/2 * sdl_height/2</code>），因为 U 分量是 2x2 像素块共享的。</li>
+<li><strong>V 分量（色度信息，Chrominance）</strong>：V 分量平面的大小与 U 分量相同，也是 Y 平面的四分之一。</li>
+</ol>
+<p>因此，对于一个 YUV420 格式的图像（比如 IYUV 或 YV12 格式）：</p>
+<ul>
+<li><strong>Y 平面</strong>：占用 <code>sdl_width * sdl_height</code> 字节。</li>
+<li><strong>U 平面</strong>：占用 <code>(sdl_width/2) * (sdl_height/2)</code> 字节，即 <code>sdl_width * sdl_height / 4</code> 字节。</li>
+<li><strong>V 平面</strong>：占用的字节数与 U 平面相同，也是 <code>sdl_width * sdl_height / 4</code> 字节。</li>
+</ul>
+<p>所以，YUV420 图像的总数据量为：</p>
+<p>总数据量=Y平面+U平面+V平面</p>
+<p>总数据量$=sdl_width \times sdl_height + \displaystyle\frac{sdl_width \times sdl_height}{4}+\displaystyle\frac{sdl_width \times sdl_height}{4}$</p>
+<p>总数据量$=sdl_width \times sdl_height\times (1+\frac{1}{4}+\frac{1}{4})=sdl_width \times sdl_height\times1.5$</p>
+<p>因此，乘以 <code>1.5</code> 是为了读取包含整个 YUV 图像帧的所有数据，包括 Y、U、V 三个分量。这确保了从文件中读取到的字节数足够填充一个完整的 YUV 图像帧。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">JasonQian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/08/11/SDL%E6%92%AD%E6%94%BEYUV%E6%A0%BC%E5%BC%8F%E8%A7%86%E9%A2%91/">http://example.com/2024/08/11/SDL%E6%92%AD%E6%94%BEYUV%E6%A0%BC%E5%BC%8F%E8%A7%86%E9%A2%91/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">JasonQian's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://www.jasonqian.com/img/menhera_12.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/08/11/%E4%BD%BF%E7%94%A8SDL%E5%B0%86%E4%B8%A4%E5%B9%85%E5%9B%BE%E7%89%87%E5%90%88%E5%B9%B6/"><img class="next-cover" src="https://www.jasonqian.com/img/menhera_34.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">使用SDL将两幅图片合并</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://www.jasonqian.com/img/menhera_1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">JasonQian</div><div class="author-info__description">1.048596</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">46</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Jason-Qian993" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">帰り道が長い</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">1.</span> <span class="toc-text">代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">（一）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">（二）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">（三）</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/08/11/SDL%E6%92%AD%E6%94%BEYUV%E6%A0%BC%E5%BC%8F%E8%A7%86%E9%A2%91/" title="SDL播放YUV格式视频"><img src="https://www.jasonqian.com/img/menhera_12.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SDL播放YUV格式视频"/></a><div class="content"><a class="title" href="/2024/08/11/SDL%E6%92%AD%E6%94%BEYUV%E6%A0%BC%E5%BC%8F%E8%A7%86%E9%A2%91/" title="SDL播放YUV格式视频">SDL播放YUV格式视频</a><time datetime="2024-08-11T02:13:42.000Z" title="发表于 2024-08-11 10:13:42">2024-08-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/11/%E4%BD%BF%E7%94%A8SDL%E5%B0%86%E4%B8%A4%E5%B9%85%E5%9B%BE%E7%89%87%E5%90%88%E5%B9%B6/" title="使用SDL将两幅图片合并"><img src="https://www.jasonqian.com/img/menhera_34.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用SDL将两幅图片合并"/></a><div class="content"><a class="title" href="/2024/08/11/%E4%BD%BF%E7%94%A8SDL%E5%B0%86%E4%B8%A4%E5%B9%85%E5%9B%BE%E7%89%87%E5%90%88%E5%B9%B6/" title="使用SDL将两幅图片合并">使用SDL将两幅图片合并</a><time datetime="2024-08-11T02:12:56.000Z" title="发表于 2024-08-11 10:12:56">2024-08-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/09/%E4%BD%BF%E7%94%A8SDL%E8%BF%9B%E8%A1%8CRGB%E6%B8%B2%E6%9F%93/" title="使用SDL进行RGB渲染"><img src="https://www.jasonqian.com/img/menhera_28.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用SDL进行RGB渲染"/></a><div class="content"><a class="title" href="/2024/08/09/%E4%BD%BF%E7%94%A8SDL%E8%BF%9B%E8%A1%8CRGB%E6%B8%B2%E6%9F%93/" title="使用SDL进行RGB渲染">使用SDL进行RGB渲染</a><time datetime="2024-08-09T08:11:18.000Z" title="发表于 2024-08-09 16:11:18">2024-08-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/02/ffmpeg-%E6%90%9C%E7%B4%A2%E6%A0%8F/" title="ffmpeg 搜索栏"><img src="https://www.jasonqian.com/img/menhera_29.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="ffmpeg 搜索栏"/></a><div class="content"><a class="title" href="/2024/08/02/ffmpeg-%E6%90%9C%E7%B4%A2%E6%A0%8F/" title="ffmpeg 搜索栏">ffmpeg 搜索栏</a><time datetime="2024-08-02T00:57:14.000Z" title="发表于 2024-08-02 08:57:14">2024-08-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/01/XViewer-Project/" title="XViewer Project"><img src="https://www.jasonqian.com/img/menhera_35.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="XViewer Project"/></a><div class="content"><a class="title" href="/2024/08/01/XViewer-Project/" title="XViewer Project">XViewer Project</a><time datetime="2024-08-01T07:31:01.000Z" title="发表于 2024-08-01 15:31:01">2024-08-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By JasonQian</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用多线部署，主线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="http://www.beian.gov.cn/portal/recordQuery" style="margin-inline:5px" data-title="网站备案" title=""><img src="https://img.shields.io/badge/渝公网安备-50011802010611号-blue?style=flat&amp;logo=备案" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="/js/runtime.js"></script><!-- hexo injector body_end end --></body></html>
