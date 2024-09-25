@@ -1,0 +1,344 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Python3_Sort | JasonQian's Blog</title><meta name="author" content="JasonQian"><meta name="copyright" content="JasonQian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="beat_sort 算法思想 遍历两遍list，第一遍[遍历次数]，第二遍[遍历数据]。相邻的两个数，如果后面的数rod_lower大于前面的数rod_upper，就进行两个数的交换。 1234567891011# 交换两个数sequence[i] -&#x3D; rod_upper - rod_lowersequence[i + 1] +&#x3D; rod_upper - rod_lower# 它就类似于t &#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python3_Sort">
+<meta property="og:url" content="http://example.com/2024/09/25/Python3-Sort/index.html">
+<meta property="og:site_name" content="JasonQian&#39;s Blog">
+<meta property="og:description" content="beat_sort 算法思想 遍历两遍list，第一遍[遍历次数]，第二遍[遍历数据]。相邻的两个数，如果后面的数rod_lower大于前面的数rod_upper，就进行两个数的交换。 1234567891011# 交换两个数sequence[i] -&#x3D; rod_upper - rod_lowersequence[i + 1] +&#x3D; rod_upper - rod_lower# 它就类似于t &#x3D;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.jasonqian.com/img/menhera_21.jpg">
+<meta property="article:published_time" content="2024-09-25T08:25:33.000Z">
+<meta property="article:modified_time" content="2024-09-25T08:26:39.223Z">
+<meta property="article:author" content="JasonQian">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.jasonqian.com/img/menhera_21.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/09/25/Python3-Sort/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Python3_Sort',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-09-25 16:26:39'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/runtime.min.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://www.jasonqian.com/img/menhera_1.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">65</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://www.jasonqian.com/img/menhera_21.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">JasonQian's Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Python3_Sort</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-09-25T08:25:33.000Z" title="发表于 2024-09-25 16:25:33">2024-09-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-09-25T08:26:39.223Z" title="更新于 2024-09-25 16:26:39">2024-09-25</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Python3_Sort"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="beat-sort">beat_sort</h2>
+<h3 id="算法思想">算法思想</h3>
+<p>遍历两遍<code>list</code>，第一遍[<strong>遍历次数</strong>]，第二遍[<strong>遍历数据</strong>]。相邻的两个数，如果后面的数<code>rod_lower</code>大于前面的数<code>rod_upper</code>，就进行两个数的交换。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 交换两个数</span></span><br><span class="line">sequence[i] -= rod_upper - rod_lower</span><br><span class="line">sequence[i + <span class="number">1</span>] += rod_upper - rod_lower</span><br><span class="line"></span><br><span class="line"><span class="comment"># 它就类似于</span></span><br><span class="line">t = sequence[i]</span><br><span class="line">sequence[i] = sequence[i + <span class="number">1</span>]</span><br><span class="line">sequence[i + <span class="number">1</span>] = t</span><br><span class="line"></span><br><span class="line"><span class="comment"># 优点：两行代码</span></span><br><span class="line"><span class="comment"># 缺点：不能处理负数</span></span><br></pre></td></tr></table></figure>
+<p>时间复杂度：$O(n^2)$</p>
+<h3 id="代码">代码</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">bead_sort</span>(<span class="params">sequence: <span class="built_in">list</span></span>) -&gt; <span class="built_in">list</span>:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">any</span>(<span class="keyword">not</span> <span class="built_in">isinstance</span>(x, <span class="built_in">int</span>) <span class="keyword">or</span> x &lt; <span class="number">0</span> <span class="keyword">for</span> x <span class="keyword">in</span> sequence):</span><br><span class="line">        <span class="keyword">raise</span> TypeError(<span class="string">&quot;Sequence must be list of non-negative integers&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(sequence)):</span><br><span class="line">        <span class="keyword">for</span> i, (rod_upper, rod_lower) <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="built_in">zip</span>(sequence, sequence[<span class="number">1</span>:])):  <span class="comment"># noqa: RUF007</span></span><br><span class="line">            <span class="keyword">if</span> rod_upper &gt; rod_lower:</span><br><span class="line">                sequence[i] -= rod_upper - rod_lower</span><br><span class="line">                sequence[i + <span class="number">1</span>] += rod_upper - rod_lower</span><br><span class="line">    <span class="keyword">return</span> sequence</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="keyword">assert</span> bead_sort([<span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]) == [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">    <span class="keyword">assert</span> bead_sort([<span class="number">7</span>, <span class="number">9</span>, <span class="number">4</span>, <span class="number">3</span>, <span class="number">5</span>]) == [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">9</span>]</span><br></pre></td></tr></table></figure>
+<p>【<strong>语法解释</strong>】：</p>
+<ol>
+<li></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="built_in">any</span>(<span class="keyword">not</span> <span class="built_in">isinstance</span>(x, <span class="built_in">int</span>) <span class="keyword">or</span> x &lt; <span class="number">0</span> <span class="keyword">for</span> x <span class="keyword">in</span> sequence):</span><br><span class="line">        <span class="keyword">raise</span> TypeError(<span class="string">&quot;Sequence must be list of non-negative integers&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p><code>any()</code>：用于查找迭代对象中是否有一个为<code>True</code>，有就返回<code>True</code>，否则返回<code>False</code></p>
+<p>这一句话的意思就是：在<code>sequence</code>的<code>list</code>中查找，是否有一个值满足[<strong>1.不为整数</strong>][<strong>2.小于0</strong>]，如果满足就返回<code>True</code>，触发<code>raise TypeError</code>。</p>
+<ol start="2">
+<li></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(sequence)):</span><br></pre></td></tr></table></figure>
+<p>循环<code>sequence</code>中的个数，类似于C++中的</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; sequence.length; i ++ )</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i, (rod_upper, rod_lower) <span class="keyword">in</span> <span class="built_in">enumerate</span>(<span class="built_in">zip</span>(sequence, sequence[<span class="number">1</span>:])):</span><br></pre></td></tr></table></figure>
+<p>这一行代码的作用是同时遍历 <code>sequence</code> 列表中的相邻元素。具体解释如下：</p>
+<ol>
+<li>
+<p><strong><code>zip(sequence, sequence[1:])</code></strong>：<code>zip()</code> 函数将 <code>sequence</code> 和其从第二个元素开始的切片（即 <code>sequence[1:]</code>）打包成一对对的元组。这样，每个元组包含相邻的两个元素，例如 <code>(sequence[0], sequence[1])</code>、<code>(sequence[1], sequence[2])</code> 等。</p>
+</li>
+<li>
+<p><strong><code>for i, (rod_upper, rod_lower)</code></strong>：<code>enumerate()</code> 函数在遍历这些元组的同时，提供当前的索引 <code>i</code>。对于每一对相邻元素，<code>rod_upper</code> 代表前一个元素，<code>rod_lower</code> 代表后一个元素。</p>
+</li>
+<li>
+<p><strong>遍历过程</strong>：在循环中，<code>i</code> 是当前索引，<code>rod_upper</code> 和 <code>rod_lower</code> 分别是当前和下一个元素，可以用来比较和调整它们的值。</p>
+</li>
+</ol>
+<h2 id="binary-insertion-sort">binary_insertion_sort</h2>
+<h3 id="算法思想-2">算法思想</h3>
+<p>遍历两遍<code>list</code>，第一遍[<strong>遍历次数</strong>]，第二遍[<strong>遍历数据</strong>]。遍历数据的时候，假设当前遍历的下标为<code>i</code>，需要在$[0, i - 1]$中找到<code>collection[i]</code>的位置，假设位置为<code>j</code>，接着需要将$[j,i - 1]$的元素往后移动一位到$[j+1,i]$，再将<code>collection[i]</code>赋值给<code>collection[j]</code>。</p>
+<p>时间复杂度：$O(nlogn)$</p>
+<h3 id="代码-2">代码</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">binary_insertion_sort</span>(<span class="params">collection: <span class="built_in">list</span></span>) -&gt; <span class="built_in">list</span>:</span><br><span class="line">    n = <span class="built_in">len</span>(collection)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">        value_to_insert = collection[i]</span><br><span class="line">        low = <span class="number">0</span></span><br><span class="line">        high = i - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> low &lt;= high:</span><br><span class="line">            mid = (low + high) // <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> value_to_insert &lt; collection[mid]:</span><br><span class="line">                high = mid - <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                low = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i, low, -<span class="number">1</span>):</span><br><span class="line">            collection[j] = collection[j - <span class="number">1</span>]</span><br><span class="line">        collection[low] = value_to_insert</span><br><span class="line">    <span class="keyword">return</span> collection</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    user_input = <span class="built_in">input</span>(<span class="string">&quot;Enter numbers separated by a comma:\n&quot;</span>).strip()</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        unsorted = [<span class="built_in">int</span>(item) <span class="keyword">for</span> item <span class="keyword">in</span> user_input.split(<span class="string">&quot;,&quot;</span>)]</span><br><span class="line">    <span class="keyword">except</span> ValueError:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;Invalid input. Please enter valid integers separated by commas.&quot;</span>)</span><br><span class="line">        <span class="keyword">raise</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;binary_insertion_sort(unsorted) = &#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>[<strong>语法解释</strong>]</p>
+<ol>
+<li></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unsorted = [<span class="built_in">int</span>(item) <span class="keyword">for</span> item <span class="keyword">in</span> user_input.split(<span class="string">&quot;,&quot;</span>)]</span><br></pre></td></tr></table></figure>
+<h2 id="bogo-sort">bogo_sort</h2>
+<h3 id="算法思想-3">算法思想</h3>
+<p>每次一重新打乱所有元素，直到元素满足排序要求</p>
+<p>时间复杂度：$O(未知)$</p>
+<h3 id="代码-3">代码</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">bogo_sort</span>(<span class="params">collection</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">is_sorted</span>(<span class="params">collection</span>):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(collection) - <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> collection[i] &gt; collection[i + <span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> is_sorted(collection):</span><br><span class="line">        random.shuffle(collection)</span><br><span class="line">    <span class="keyword">return</span> collection</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    user_input = <span class="built_in">input</span>(<span class="string">&quot;Enter numbers separated by a comma:\n&quot;</span>).strip()</span><br><span class="line">    unsorted = [<span class="built_in">int</span>(item) <span class="keyword">for</span> item <span class="keyword">in</span> user_input.split(<span class="string">&quot;,&quot;</span>)]</span><br><span class="line">    <span class="built_in">print</span>(bogo_sort(unsorted))</span><br></pre></td></tr></table></figure>
+<h2 id="bubble-sort">bubble_sort</h2>
+<h3 id="算法思想-4">算法思想</h3>
+<p>遍历两遍<code>list</code>，第一遍[<strong>遍历区间</strong>]，第二遍[<strong>遍历数据</strong>]。<br>
+第一遍遍历的区间为$[0, len]$，$[0,len - 1]$，…，$[0,1]$<br>
+第二遍遍历从$0\to len$，$0\to len-1$，…，$0\to 1$。<br>
+遇见后者比前者小，就交换两个值<br>
+<img src="https://jasonqianpic.oss-cn-chengdu.aliyuncs.com/img/202310311939394.gif" alt=""></p>
+<h3 id="代码-4">代码</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">bubble_sort_iterative</span>(<span class="params">collection: <span class="built_in">list</span>[<span class="type">Any</span>]</span>) -&gt; <span class="built_in">list</span>[<span class="type">Any</span>]:</span><br><span class="line">    length = <span class="built_in">len</span>(collection)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">reversed</span>(<span class="built_in">range</span>(length)):</span><br><span class="line">        swapped = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(i):</span><br><span class="line">            <span class="keyword">if</span> collection[j] &gt; collection[j + <span class="number">1</span>]:</span><br><span class="line">                swapped = <span class="literal">True</span></span><br><span class="line">                collection[j], collection[j + <span class="number">1</span>] = collection[j + <span class="number">1</span>], collection[j]</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> swapped:</span><br><span class="line">            <span class="keyword">break</span>  <span class="comment"># Stop iteration if the collection is sorted.</span></span><br><span class="line">    <span class="keyword">return</span> collection</span><br></pre></td></tr></table></figure>
+<ol>
+<li></li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">length = <span class="built_in">len</span>(collection)  <span class="comment"># 假设length = 5</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">reversed</span>(<span class="built_in">range</span>(length)):</span><br><span class="line">    <span class="built_in">print</span>(i)  <span class="comment"># 4 3 2 1 0</span></span><br></pre></td></tr></table></figure>
+<p><code>reversed()</code> 函数用于返回一个反向迭代器，表示该对象的元素从最后一个到第一个依次迭代。</p>
+<h2 id="bucket-sort">bucket_sort</h2>
+<h3 id="代码思想">代码思想</h3>
+<p>桶排序是计算出每个元素应该被插入的地方。</p>
+<p>定义一个二维<code>list</code>，第一维视作桶，第二维视作该桶中存在的元素</p>
+<p>通过<code>bucket_size = (max_value - min_value) / bucket_count</code>获取</p>
+<p>对于每一个<code>val</code>，通过计算</p>
+<p><code>  ((val - min_value) / bucket_size)</code><br>
+<code>= (val - min_value) / [(max_value - min_value) / bucket_count]</code><br>
+<code>= (val - min_value) / (max_value - min_value) * bucket_count</code></p>
+<p>其中<code>(val - min_value) / (max_value - min_value)</code>作用就是将<code>val</code>值的下标，映射到从$0$开始，到<code>bucket_count</code>结束的<code>list</code>中，也就是计算出<code>val</code>下标在<code>list</code>中的百分比相对位置。再$\times$<code>bucket_count</code>就可以得到在<code>list</code>中的相对位置了。</p>
+<h3 id="代码-5">代码</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">bucket_sort</span>(<span class="params">my_list: <span class="built_in">list</span>, bucket_count: <span class="built_in">int</span> = <span class="number">10</span></span>) -&gt; <span class="built_in">list</span>:</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(my_list) == <span class="number">0</span> <span class="keyword">or</span> bucket_count &lt;= <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> []</span><br><span class="line"></span><br><span class="line">    min_value, max_value = <span class="built_in">min</span>(my_list), <span class="built_in">max</span>(my_list)</span><br><span class="line">    bucket_size = (max_value - min_value) / bucket_count</span><br><span class="line">    buckets: <span class="built_in">list</span>[<span class="built_in">list</span>] = [[] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(bucket_count)]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> val <span class="keyword">in</span> my_list:</span><br><span class="line">        index = <span class="built_in">min</span>(<span class="built_in">int</span>((val - min_value) / bucket_size), bucket_count - <span class="number">1</span>)</span><br><span class="line">        buckets[index].append(val)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> [val <span class="keyword">for</span> bucket <span class="keyword">in</span> buckets <span class="keyword">for</span> val <span class="keyword">in</span> <span class="built_in">sorted</span>(bucket)]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol>
+<li></li>
+</ol>
+<p><code>return [val for bucket in buckets for val in sorted(bucket)]</code></p>
+<p>这段代码 <code>return [val for bucket in buckets for val in sorted(bucket)]</code> 是一个<strong>列表推导式</strong>，它用于将多个桶（<code>buckets</code>）中的元素合并成一个排序好的列表，作为 <code>bucket_sort</code> 的最终输出。</p>
+<p>等价于</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">result = []</span><br><span class="line"><span class="keyword">for</span> bucket <span class="keyword">in</span> buckets:</span><br><span class="line">    <span class="keyword">for</span> val <span class="keyword">in</span> <span class="built_in">sorted</span>(bucket):</span><br><span class="line">        result.append(val)</span><br><span class="line"><span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+<h2 id="comb-sort">comb_sort</h2>
+<h3 id="代码思想-2">代码思想</h3>
+<p>类似于冒泡排序+希尔排序</p>
+<p>假设第一次排序的<code>gap = 3、shrink_factor= 1.3</code><br>
+就是从<code>&#123;data[0]、data[3]&#125; &#123;data[1]、data[4]&#125; &#123;data[2]、data[5]&#125;</code>进行比较</p>
+<p>第二次通过计算后，排序的<code>gap = 2</code><br>
+就是从<code>&#123;data[0]、data[2]&#125; &#123;data[1]、data[3]&#125; &#123;data[2]、data[4]&#125;</code>进行比较</p>
+<p>…</p>
+<p>直到<code>gap &lt;= 1</code></p>
+<h3 id="代码-6">代码</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">comb_sort</span>(<span class="params">data: <span class="built_in">list</span></span>) -&gt; <span class="built_in">list</span>:</span><br><span class="line">    shrink_factor = <span class="number">1.3</span></span><br><span class="line">    gap = <span class="built_in">len</span>(data)</span><br><span class="line">    completed = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">not</span> completed:</span><br><span class="line">        <span class="comment"># Update the gap value for a next comb</span></span><br><span class="line">        gap = <span class="built_in">int</span>(gap / shrink_factor)</span><br><span class="line">        <span class="keyword">if</span> gap &lt;= <span class="number">1</span>:</span><br><span class="line">            completed = <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">        index = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> index + gap &lt; <span class="built_in">len</span>(data):</span><br><span class="line">            <span class="keyword">if</span> data[index] &gt; data[index + gap]:</span><br><span class="line">                <span class="comment"># Swap values</span></span><br><span class="line">                data[index], data[index + gap] = data[index + gap], data[index]</span><br><span class="line">                completed = <span class="literal">False</span></span><br><span class="line">            index += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure>
+<ol>
+<li></li>
+</ol>
+<p><code>shrink_factor</code>：决定着<code>gap</code>的大小</p>
+<p><code>shrink_factor</code>越小，<code>gap</code>越大，时间复杂度越高，结果越精确</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">JasonQian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/09/25/Python3-Sort/">http://example.com/2024/09/25/Python3-Sort/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">JasonQian's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://www.jasonqian.com/img/menhera_21.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2024/09/20/Python3%E5%9C%A8Leetcode%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/"><img class="next-cover" src="https://www.jasonqian.com/img/menhera_4.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Python3在Leetcode中的学习</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://www.jasonqian.com/img/menhera_1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">JasonQian</div><div class="author-info__description">1.048596</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">65</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">5</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Jason-Qian993" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">帰り道が長い</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#beat-sort"><span class="toc-number">1.</span> <span class="toc-text">beat_sort</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3"><span class="toc-number">1.1.</span> <span class="toc-text">算法思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">1.2.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#binary-insertion-sort"><span class="toc-number">2.</span> <span class="toc-text">binary_insertion_sort</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3-2"><span class="toc-number">2.1.</span> <span class="toc-text">算法思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-2"><span class="toc-number">2.2.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bogo-sort"><span class="toc-number">3.</span> <span class="toc-text">bogo_sort</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3-3"><span class="toc-number">3.1.</span> <span class="toc-text">算法思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-3"><span class="toc-number">3.2.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bubble-sort"><span class="toc-number">4.</span> <span class="toc-text">bubble_sort</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3-4"><span class="toc-number">4.1.</span> <span class="toc-text">算法思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-4"><span class="toc-number">4.2.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bucket-sort"><span class="toc-number">5.</span> <span class="toc-text">bucket_sort</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%80%9D%E6%83%B3"><span class="toc-number">5.1.</span> <span class="toc-text">代码思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-5"><span class="toc-number">5.2.</span> <span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#comb-sort"><span class="toc-number">6.</span> <span class="toc-text">comb_sort</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%80%9D%E6%83%B3-2"><span class="toc-number">6.1.</span> <span class="toc-text">代码思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81-6"><span class="toc-number">6.2.</span> <span class="toc-text">代码</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2024/09/25/Python3-Sort/" title="Python3_Sort"><img src="https://www.jasonqian.com/img/menhera_21.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python3_Sort"/></a><div class="content"><a class="title" href="/2024/09/25/Python3-Sort/" title="Python3_Sort">Python3_Sort</a><time datetime="2024-09-25T08:25:33.000Z" title="发表于 2024-09-25 16:25:33">2024-09-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/09/20/Python3%E5%9C%A8Leetcode%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/" title="Python3在Leetcode中的学习"><img src="https://www.jasonqian.com/img/menhera_4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python3在Leetcode中的学习"/></a><div class="content"><a class="title" href="/2024/09/20/Python3%E5%9C%A8Leetcode%E4%B8%AD%E7%9A%84%E5%AD%A6%E4%B9%A0/" title="Python3在Leetcode中的学习">Python3在Leetcode中的学习</a><time datetime="2024-09-20T03:25:07.000Z" title="发表于 2024-09-20 11:25:07">2024-09-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/31/SDL%E6%92%AD%E6%94%BE%E9%9F%B3%E9%A2%91/" title="SDL播放音频"><img src="https://www.jasonqian.com/img/menhera_31.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SDL播放音频"/></a><div class="content"><a class="title" href="/2024/08/31/SDL%E6%92%AD%E6%94%BE%E9%9F%B3%E9%A2%91/" title="SDL播放音频">SDL播放音频</a><time datetime="2024-08-31T06:52:30.000Z" title="发表于 2024-08-31 14:52:30">2024-08-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/28/%E8%B4%A3%E4%BB%BB%E9%93%BE%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="责任链设计模式"><img src="https://www.jasonqian.com/img/menhera_22.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="责任链设计模式"/></a><div class="content"><a class="title" href="/2024/08/28/%E8%B4%A3%E4%BB%BB%E9%93%BE%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="责任链设计模式">责任链设计模式</a><time datetime="2024-08-28T03:05:02.000Z" title="发表于 2024-08-28 11:05:02">2024-08-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/08/27/%E7%BC%96%E7%A0%81encoder%EF%BC%8C%E8%A7%A3%E7%A0%81decoder%EF%BC%8C%E5%A4%8D%E7%94%A8mux%EF%BC%8C%E8%A7%A3%E5%A4%8D%E7%94%A8demux%E5%85%B3%E7%B3%BB/" title="编码encoder，解码decoder，复用mux，解复用demux关系"><img src="https://www.jasonqian.com/img/menhera_28.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="编码encoder，解码decoder，复用mux，解复用demux关系"/></a><div class="content"><a class="title" href="/2024/08/27/%E7%BC%96%E7%A0%81encoder%EF%BC%8C%E8%A7%A3%E7%A0%81decoder%EF%BC%8C%E5%A4%8D%E7%94%A8mux%EF%BC%8C%E8%A7%A3%E5%A4%8D%E7%94%A8demux%E5%85%B3%E7%B3%BB/" title="编码encoder，解码decoder，复用mux，解复用demux关系">编码encoder，解码decoder，复用mux，解复用demux关系</a><time datetime="2024-08-27T08:58:40.000Z" title="发表于 2024-08-27 16:58:40">2024-08-27</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 - 2024 By JasonQian</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (true){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用多线部署，主线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="http://www.beian.gov.cn/portal/recordQuery" style="margin-inline:5px" data-title="网站备案" title=""><img src="https://img.shields.io/badge/渝公网安备-50011802010611号-blue?style=flat&amp;logo=备案" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="/js/runtime.js"></script><!-- hexo injector body_end end --></body></html>
