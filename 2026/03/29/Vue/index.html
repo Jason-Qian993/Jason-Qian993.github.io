@@ -1,0 +1,387 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Vue | JasonQian's Blog</title><meta name="author" content="JasonQian"><meta name="copyright" content="JasonQian"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="环境配置 下载Node 18.x 配置环境变量：NODE_HOME：C:\WORK\node-v18.14.0-win-x64，NVM_HOME 使用node -v、nvm -v验证 启动ui界面在powershell中vue ui  项目配置信息：package.json 123456789101112131415161718192021222324{  &quot;name&quot;: &quot;my-bank-adm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue">
+<meta property="og:url" content="http://example.com/2026/03/29/Vue/index.html">
+<meta property="og:site_name" content="JasonQian&#39;s Blog">
+<meta property="og:description" content="环境配置 下载Node 18.x 配置环境变量：NODE_HOME：C:\WORK\node-v18.14.0-win-x64，NVM_HOME 使用node -v、nvm -v验证 启动ui界面在powershell中vue ui  项目配置信息：package.json 123456789101112131415161718192021222324{  &quot;name&quot;: &quot;my-bank-adm">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.jasonqian.com/img/menhera_8.jpg">
+<meta property="article:published_time" content="2026-03-29T03:56:27.000Z">
+<meta property="article:modified_time" content="2026-03-29T03:57:08.000Z">
+<meta property="article:author" content="JasonQian">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.jasonqian.com/img/menhera_8.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Vue",
+  "url": "http://example.com/2026/03/29/Vue/",
+  "image": "https://www.jasonqian.com/img/menhera_8.jpg",
+  "datePublished": "2026-03-29T03:56:27.000Z",
+  "dateModified": "2026-03-29T03:57:08.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "JasonQian",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2026/03/29/Vue/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.4/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Vue',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<link rel="stylesheet" href="/css/runtime.min.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head><body><div id="web_bg" style="background-image: url(https://jasonqianpic.oss-cn-chengdu.aliyuncs.com/img/202411281151046.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://www.jasonqian.com/img/menhera_1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">90</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://www.jasonqian.com/img/menhera_8.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">JasonQian's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Vue</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Vue</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-03-29T03:56:27.000Z" title="发表于 2026-03-29 11:56:27">2026-03-29</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-29T03:57:08.000Z" title="更新于 2026-03-29 11:57:08">2026-03-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="环境配置">环境配置</h2>
+<p>下载Node 18.x</p>
+<p>配置环境变量：<code>NODE_HOME：C:\WORK\node-v18.14.0-win-x64</code>，<code>NVM_HOME</code></p>
+<p>使用<code>node -v</code>、<code>nvm -v</code>验证</p>
+<p>启动ui界面在powershell中<code>vue ui</code></p>
+<hr>
+<p>项目配置信息：<code>package.json</code></p>
+<figure class="highlight json"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">{</span></span><br><span class="line">  <span class="attr">"name"</span><span class="punctuation">:</span> <span class="string">"my-bank-admin-vue2"</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">"version"</span><span class="punctuation">:</span> <span class="string">"0.1.0"</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">"private"</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">"scripts"</span><span class="punctuation">:</span> <span class="punctuation">{</span> </span><br><span class="line">  	<span class="attr">"dev"</span><span class="punctuation">:</span> <span class="string">"vite"</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"serve"</span><span class="punctuation">:</span> <span class="string">"vue-cli-service serve"</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"build"</span><span class="punctuation">:</span> <span class="string">"vue-cli-service build"</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">"lint"</span><span class="punctuation">:</span> <span class="string">"vue-cli-service lint"</span></span><br><span class="line">  <span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">"dependencies"</span><span class="punctuation">:</span> <span class="punctuation">{</span></span><br><span class="line">    <span class="attr">"vue"</span><span class="punctuation">:</span> <span class="string">"^2.7.0"</span><span class="punctuation">,</span>                    <span class="comment">// Vue 2 核心</span></span><br><span class="line">    <span class="attr">"vue-router"</span><span class="punctuation">:</span> <span class="string">"^3.6.5"</span><span class="punctuation">,</span>             <span class="comment">// 路由</span></span><br><span class="line">    <span class="attr">"vuex"</span><span class="punctuation">:</span> <span class="string">"^3.1.0"</span><span class="punctuation">,</span>                   <span class="comment">// 状态管理（Vue 2 用 Vuex）</span></span><br><span class="line">    <span class="comment">// 这里就是你放 Bootstrap、jQuery 的地方</span></span><br><span class="line">    <span class="attr">"bootstrap"</span><span class="punctuation">:</span> <span class="string">"^5.3.3"</span><span class="punctuation">,</span>              <span class="comment">// ← 你要手动加</span></span><br><span class="line">    <span class="attr">"jquery"</span><span class="punctuation">:</span> <span class="string">"^3.7.1"</span><span class="punctuation">,</span>                 <span class="comment">// ← 你要手动加</span></span><br><span class="line">    <span class="attr">"popper.js"</span><span class="punctuation">:</span> <span class="string">"^1.16.1"</span>              <span class="comment">// Bootstrap 5 还需要这个</span></span><br><span class="line">  <span class="punctuation">}</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">"devDependencies"</span><span class="punctuation">:</span> <span class="punctuation">{</span></span><br><span class="line">    <span class="attr">"@vue/cli-service"</span><span class="punctuation">:</span> <span class="string">"^5.0.0"</span><span class="punctuation">,</span></span><br><span class="line">    <span class="comment">// ... 构建工具</span></span><br><span class="line">  <span class="punctuation">}</span></span><br><span class="line"><span class="punctuation">}</span></span><br></pre></td></tr></tbody></table></figure>
+<p>银行几乎都搭了内部仓库（Nexus Repository Manager、JFrog Artifactory、Verdaccio 或自研私服）。</p>
+<p><strong>操作步骤（开发机上一次配置，永久生效）：</strong></p>
+<ol>
+<li>
+<p>在<strong>项目根目录</strong>新建或修改 <code>.npmrc</code>文件（注意是隐藏文件），内容如下：</p>
+<figure class="highlight ini"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">registry</span>=http://你的内网npm地址/repository/npm-group/   <span class="comment"># 问运维要这个地址</span></span><br><span class="line"><span class="comment"># 如果有用户名密码认证，再加下面两行</span></span><br><span class="line">//你的内网npm地址/repository/npm-group/:<span class="attr">username</span>=你的域账号</span><br><span class="line">//你的内网npm地址/repository/npm-group/:<span class="attr">_password</span>=你的密码base64（运维给）</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li>
+<p>然后正常执行：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></tbody></table></figure>
+<p>私服会自动从内网缓存里拉取 Bootstrap、jQuery（运维事先已经把常用包同步进去了）。</p>
+</li>
+</ol>
+<p><strong>优点</strong>：和外网体验一模一样，团队所有人统一，CI/CD 也能走私服。</p>
+<hr>
+<h2 id="基础概念">基础概念</h2>
+<h3 id="文件结构">文件结构</h3>
+<p><img src="https://jasonqianpic.oss-cn-chengdu.aliyuncs.com/img/202603291542835.png" alt="image-20260329154236252"></p>
+<h4 id="🚀src-assets-静态资源文件夹">🚀<code>src/assets/</code>静态资源文件夹</h4>
+<p><strong>功能</strong>：存放项目里所有<strong>不需要编译</strong>的静态文件。</p>
+<p><strong>存放内容</strong>：</p>
+<ul>
+<li>
+<p>图片（<code>logo.png</code>、<code>icon.svg</code> 等）</p>
+</li>
+<li>
+<p>字体文件（<code>.ttf</code>、<code>.woff</code>）</p>
+</li>
+<li>
+<p>全局样式文件（偶尔会放 <code>global.css</code>）</p>
+</li>
+<li>
+<p>第三方库的静态资源（比如 echarts 的地图 json）</p>
+</li>
+</ul>
+<p><strong>真实用法</strong>：在组件里用 <code>import logo from '@/assets/logo.png' </code>引入，或者直接在 CSS 里 <code>background: url(@/assets/xx.png)</code>。 logo、行标、背景图全扔这里，Vite 会自动优化打包。</p>
+<hr>
+<h4 id="🚀src-components-——-公共组件文件夹">🚀<code>src/components/</code> —— 公共组件文件夹</h4>
+<p><strong>作用</strong>：存放<strong>全局可复用</strong>的小组件（不是完整页面）。</p>
+<p><strong>存放内容</strong>：</p>
+<ul>
+<li>自定义组件：BaseTable.vue、BaseForm.vue、PermissionButton.vue、ElDialogWrapper.vue</li>
+</ul>
+<p>真实用法**：所有 CRUD 表格、表单、搜索栏、权限按钮都抽到这里。**规则：被 2 个以上页面使用的组件才放这里，否则先放 views 里，后期重构。</p>
+<hr>
+<h4 id="🚀src-router-——-路由配置文件夹">🚀<code>src/router/</code> —— 路由配置文件夹</h4>
+<p><strong>作用</strong>：管理整个项目的页面跳转（完全取代 JSP 的 <code>&lt;jsp:forward&gt;</code> 和 <code>&lt;c:redirect&gt;</code>）。</p>
+<p><strong>存放内容</strong>：</p>
+<ul>
+<li>index.js（主路由文件，定义所有 path 和 component）</li>
+<li>推荐新建 modules/ 子目录，把每个业务模块路由拆分（userRouter.js、menuRouter.js）</li>
+</ul>
+<p><strong>真实用法</strong>：每个 JSP 页面对应一个路由，使用懒加载<code> () =&gt; import('@/views/user/UserList.vue')</code>，几百个路由也不卡。</p>
+<hr>
+<h4 id="🚀src-store-——-Pinia-状态管理文件夹">🚀<code>src/store/</code> —— Pinia 状态管理文件夹</h4>
+<p><strong>作用</strong>：全局共享数据管理（取代 JSP session + 全局变量）。</p>
+<p><strong>存放内容</strong>：</p>
+<ul>
+<li><code>index.js</code>（Pinia 入口）</li>
+<li>每个模块一个文件：<code>user.ts</code>、<code>auth.ts</code>、<code>menu.ts</code></li>
+</ul>
+<p><strong>真实用法</strong>：登录 token、用户信息、权限菜单、主题配置全放这里。页面刷新也不丢（配合 localStorage）。</p>
+<hr>
+<h4 id="🚀src-views-——-页面视图文件夹（迁移-JSP-的主力战场）">🚀<code>src/views/</code> —— 页面视图文件夹（迁移 JSP 的主力战场）</h4>
+<p><strong>作用</strong>：存放<strong>每一个具体页面</strong>（List + Form + Detail）。</p>
+<p><strong>存放内容</strong>：</p>
+<ul>
+<li><code>HomeView.vue</code>、<code>AboutView.vue</code>（模板自带，可删）</li>
+<li>按模块建子文件夹：<code>user/UserList.vue</code>、<code>user/UserForm.vue</code>、<code>permission/RoleList.vue</code></li>
+</ul>
+<p><strong>真实用法</strong>：<strong>一个 JSP 页面 = 一个 views 文件夹</strong>。里面直接写 <code>&lt;el-table&gt;</code>、<code>&lt;el-form&gt;</code>、查询条件、弹窗操作。</p>
+<hr>
+<h4 id="🚀src-App-vue-——-根组件">🚀<code>src/App.vue</code> —— 根组件</h4>
+<p><strong>作用</strong>：整个应用的<strong>最外层容器</strong>。</p>
+<p><strong>存放内容</strong>：全局布局（<code>&lt;router-view&gt;</code> + 侧边栏 + 顶部导航 + 页脚）。</p>
+<p><strong>真实用法</strong>：用 Element Plus 的<code>&lt;el-container&gt;</code>把后台框架搭起来，左侧菜单、顶部栏全写在这里。</p>
+<hr>
+<h4 id="🚀src-main-ts（或-main-js）-——-项目入口文件">🚀<code>src/main.ts（或 main.js）</code> —— 项目入口文件</h4>
+<p><strong>作用</strong>：项目启动的第一行代码。</p>
+<p><strong>存放内容</strong>：</p>
+<ul>
+<li>创建 Vue 实例</li>
+<li>注册 Pinia、Router、Element Plus、axios 拦截器、全局指令</li>
+</ul>
+<p><strong>真实用法</strong>：统一加 token 拦截器、Element Plus 主题配置都在这里写。保持干净，别乱改。</p>
+<hr>
+<p><strong>真实企业项目中我还会额外新建的文件夹（推荐立刻加上）</strong></p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">src/</span><br><span class="line">├── api/          <span class="comment"># 所有 axios 请求封装（userApi.ts、menuApi.ts）</span></span><br><span class="line">├── utils/        <span class="comment"># 工具函数（request.ts、auth.ts、validate.ts）</span></span><br><span class="line">├── hooks/        <span class="comment"># 自定义 Hooks（useTable.ts、useDialog.ts）</span></span><br><span class="line">├── styles/       <span class="comment"># 全局样式、主题变量</span></span><br><span class="line">├── layout/       <span class="comment"># 布局组件（Header.vue、Sidebar.vue）</span></span><br><span class="line">└── types/        <span class="comment"># TypeScript 类型定义</span></span><br></pre></td></tr></tbody></table></figure>
+<p>快速上手建议（迁移 JSP 时的最佳实践）</p>
+<ol>
+<li>先删掉 HelloWorld.vue 和 AboutView.vue，保持项目干净。</li>
+<li>在 views/ 下新建 user/ 文件夹，按照我之前给你的 UserList.vue 示例开始迁移第一个页面。</li>
+<li>记住核心思维：<strong>views 放页面，components 放零件，api 放接口，store 放状态</strong>。</li>
+</ol>
+<hr>
+<h3 id="代码">代码</h3>
+<p>整个vue项目通过<code>main.js</code>中的<code>createApp(App).use(store).use(router).mount('#app')</code>将所有的组件挂载到<code>/public/index.html</code>中的<code>&lt;div id="app"&gt;&lt;/div&gt;</code></p>
+<p>.</p>
+<p>每一个页面都是一个<code>.vue</code>文件，由三个部分组成，如下</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style scoped&gt;  // 加了scoped表示这个css只在当前页面中渲染，起到了隔离的作用</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></tbody></table></figure>
+<p>.</p>
+<p><strong>如何引入其他组件？</strong></p>
+<p>在<code>/views/HomeView.vue</code>中引入<code>/components/HelloWorld.vue</code></p>
+<p>在<code>/components/HelloWorld.vue</code>的<code>script</code>里抛出本身</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class="hello"&gt;</span><br><span class="line">    &lt;h1&gt;{{ msg }}&lt;/h1&gt;  &lt;!-- 赋值 --&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default {</span><br><span class="line">  name: 'HelloWorld',  // 起别名，用于引入标识</span><br><span class="line">  props: {</span><br><span class="line">    msg: String  // 其他组件调用的时候，可以赋值</span><br><span class="line">  }</span><br><span class="line">}</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></tbody></table></figure>
+<p>在<code>/views/HomeView.vue</code>中引入</p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class="home"&gt;</span><br><span class="line">    &lt;img alt="Vue logo" src="../assets/logo.png"&gt;</span><br><span class="line">    &lt;HelloWorld msg="Welcome to Your Vue.js App"/&gt; &lt;!-- 在这里使用，并给msg赋值 --&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import HelloWorld from '@/components/HelloWorld.vue'  // 在这里引入</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></tbody></table></figure>
+<p>.</p>
+<p>在<code>/router/index.js</code>中将<code>createWebHashHistory</code>改为<code>createWebHashHistory</code>可以避免访问时出现<code>/#/</code>的情况</p>
+<p>.</p>
+<p>引入的格外组件，如<code>bootstrap</code>，在<code>main.js</code>中引入</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> { createApp } <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">App</span> <span class="keyword">from</span> <span class="string">'./App.vue'</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'./store'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'bootstrap/dist/css/bootstrap.css'</span>;  <span class="comment">// 这里</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'bootstrap/dist/js/bootstrap'</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">createApp</span>(<span class="title class_">App</span>).<span class="title function_">use</span>(store).<span class="title function_">use</span>(router).<span class="title function_">mount</span>(<span class="string">'#app'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>.</p>
+<figure class="highlight markdown"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">script部分</span><br><span class="line">export default对象的属性：</span><br><span class="line"><span class="code">    name：组件的名称</span></span><br><span class="line"><span class="code">    components：存储&lt;template&gt;中用到的所有组件</span></span><br><span class="line"><span class="code">    props：存储父组件传递给子组件的数据</span></span><br><span class="line"><span class="code">    watch()：当某个数据发生变化时触发</span></span><br><span class="line"><span class="code">    computed：动态计算某个数据</span></span><br><span class="line"><span class="code">    setup(props, context)：初始化变量、函数</span></span><br><span class="line"><span class="code">        ref定义变量，可以用.value属性重新赋值，效率低于reactive</span></span><br><span class="line"><span class="code">        reactive定义对象，不可重新赋值</span></span><br><span class="line"><span class="code">        props存储父组件传递过来的数据</span></span><br><span class="line"><span class="code">        context.emit()：触发父组件绑定的函数</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"></span><br><span class="line">template部分</span><br><span class="line"><span class="code">    &lt;slot&gt;&lt;/slot&gt;：存放父组件传过来的children。</span></span><br><span class="line"><span class="code">    v-on:click或@click属性：绑定事件</span></span><br><span class="line"><span class="code">    v-if、v-else、v-else-if属性：判断</span></span><br><span class="line"><span class="code">    v-for属性：循环，:key循环的每个元素需要有唯一的key</span></span><br><span class="line"><span class="code">    v-bind:或:：绑定属性</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"></span><br><span class="line">style部分</span><br><span class="line"><span class="code">	&lt;style&gt;标签添加scope属性后，不同组件间的css不会相互影响。</span></span><br><span class="line"><span class="code"></span></span><br><span class="line"></span><br><span class="line">第三方组件</span><br><span class="line"><span class="code">    view-router包：实现路由功能。</span></span><br><span class="line"><span class="code">    vuex：存储全局状态，全局唯一。</span></span><br><span class="line"><span class="code">        state: 存储所有数据，可以用modules属性划分成若干模块</span></span><br><span class="line"><span class="code">        getters：根据state中的值计算新的值</span></span><br><span class="line"><span class="code">        mutations：所有对state的修改操作都需要定义在这里，不支持异步，可以通过$store.commit()触发</span></span><br><span class="line"><span class="code">        actions：定义对state的复杂修改操作，支持异步，可以通过$store.dispatch()触发。注意不能直接修改state，只能通过mutations修改state。</span></span><br><span class="line"><span class="code">        modules：定义state的子模块</span></span><br></pre></td></tr></tbody></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">JasonQian</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2026/03/29/Vue/">http://example.com/2026/03/29/Vue/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">JasonQian's Blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="https://www.jasonqian.com/img/menhera_8.jpg" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/03/15/k8s/" title="k8s"><img class="cover" src="https://www.jasonqian.com/img/menhera_24.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">k8s</div></div><div class="info-2"><div class="info-item-1">概念  Node  一个节点就是一个物理机或者虚拟机  Pod   如图所示：在一个node中有APP应用程序、数据库应用程序  pod是k8s中的最小调度单元，它由node进行管理，一个node中可以有一个或者多个容器的组合。创建之后，k8s一般会给它们分配一个内部的ip地址，注意外部是访问不了的 一般情况下，建议一个pod中只运行一个容器，这样可以更好的实现应用程序的解耦和扩展   如图所示：pod如果发生故障的时候，k8s会销毁故障的pod，重新创建一个新的pod，此时ip地址会发生改变，如果还按照原来的ip进行访问的话，就会发生错误。k8s为了解决这个问题，引入了一个叫做Service的资源对象。   Service  Service简称svc svc可以作为pod之间的通讯桥梁。svc将APP应用程序和数据库应用程序分成了两个部分，APP应用程序通过svc来访问数据库。数据库的pod做了集群，当某一个pod故障了，即使这个pod的ip地址发生了变化，svc会将请求发送到其他正常的pod上，因为svc的ip地址不会变  内部服务、外部服务  内部服务：不想暴露给外面的一些...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://www.jasonqian.com/img/menhera_1.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">JasonQian</div><div class="author-info-description">1.048596</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">90</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">6</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Jason-Qian993" target="_blank" title="Github"><i class="fab fa-github"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">帰り道が長い</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text">环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="toc-number">2.</span> <span class="toc-text">基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">2.1.</span> <span class="toc-text">文件结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%9A%80src-assets-%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">2.1.1.</span> <span class="toc-text">🚀src&#x2F;assets&#x2F;静态资源文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%9A%80src-components-%E2%80%94%E2%80%94-%E5%85%AC%E5%85%B1%E7%BB%84%E4%BB%B6%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">2.1.2.</span> <span class="toc-text">🚀src&#x2F;components&#x2F; —— 公共组件文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%9A%80src-router-%E2%80%94%E2%80%94-%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">2.1.3.</span> <span class="toc-text">🚀src&#x2F;router&#x2F; —— 路由配置文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%9A%80src-store-%E2%80%94%E2%80%94-Pinia-%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">2.1.4.</span> <span class="toc-text">🚀src&#x2F;store&#x2F; —— Pinia 状态管理文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%9A%80src-views-%E2%80%94%E2%80%94-%E9%A1%B5%E9%9D%A2%E8%A7%86%E5%9B%BE%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%88%E8%BF%81%E7%A7%BB-JSP-%E7%9A%84%E4%B8%BB%E5%8A%9B%E6%88%98%E5%9C%BA%EF%BC%89"><span class="toc-number">2.1.5.</span> <span class="toc-text">🚀src&#x2F;views&#x2F; —— 页面视图文件夹（迁移 JSP 的主力战场）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%9A%80src-App-vue-%E2%80%94%E2%80%94-%E6%A0%B9%E7%BB%84%E4%BB%B6"><span class="toc-number">2.1.6.</span> <span class="toc-text">🚀src&#x2F;App.vue —— 根组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%F0%9F%9A%80src-main-ts%EF%BC%88%E6%88%96-main-js%EF%BC%89-%E2%80%94%E2%80%94-%E9%A1%B9%E7%9B%AE%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6"><span class="toc-number">2.1.7.</span> <span class="toc-text">🚀src&#x2F;main.ts（或 main.js） —— 项目入口文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81"><span class="toc-number">2.2.</span> <span class="toc-text">代码</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2026/03/29/Vue/" title="Vue"><img src="https://www.jasonqian.com/img/menhera_8.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Vue"/></a><div class="content"><a class="title" href="/2026/03/29/Vue/" title="Vue">Vue</a><time datetime="2026-03-29T03:56:27.000Z" title="发表于 2026-03-29 11:56:27">2026-03-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/03/15/k8s/" title="k8s"><img src="https://www.jasonqian.com/img/menhera_24.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="k8s"/></a><div class="content"><a class="title" href="/2026/03/15/k8s/" title="k8s">k8s</a><time datetime="2026-03-14T23:52:12.000Z" title="发表于 2026-03-15 07:52:12">2026-03-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/02/24/%E5%9C%BA%E6%99%AF%E9%A2%98/" title="场景题"><img src="https://www.jasonqian.com/img/menhera_14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="场景题"/></a><div class="content"><a class="title" href="/2026/02/24/%E5%9C%BA%E6%99%AF%E9%A2%98/" title="场景题">场景题</a><time datetime="2026-02-23T23:43:15.000Z" title="发表于 2026-02-24 07:43:15">2026-02-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2026/01/10/%E5%85%85%E7%94%B5%E6%A1%A9%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" title="充电桩项目总结"><img src="https://www.jasonqian.com/img/menhera_19.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="充电桩项目总结"/></a><div class="content"><a class="title" href="/2026/01/10/%E5%85%85%E7%94%B5%E6%A1%A9%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93/" title="充电桩项目总结">充电桩项目总结</a><time datetime="2026-01-09T19:22:39.000Z" title="发表于 2026-01-10 03:22:39">2026-01-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/12/02/Java%E9%9B%86%E5%90%88%E5%85%AB%E8%82%A1%E6%96%87/" title="Java集合八股文"><img src="https://www.jasonqian.com/img/menhera_23.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java集合八股文"/></a><div class="content"><a class="title" href="/2025/12/02/Java%E9%9B%86%E5%90%88%E5%85%AB%E8%82%A1%E6%96%87/" title="Java集合八股文">Java集合八股文</a><time datetime="2025-12-01T22:36:32.000Z" title="发表于 2025-12-02 06:36:32">2025-12-02</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2022 - 2026 By JasonQian</span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.2"></script><script src="/js/main.js?v=5.5.2"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.4/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><script async data-pjax src="/"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="请输入搜索文字" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.5.2"></script></div></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v6.2.0" title=""><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo" alt=""/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px" data-title="主题版本Butterfly_v4.3.1" title=""><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender" alt=""/></a><a class="github-badge" target="_blank" href="https://vercel.com/" style="margin-inline:5px" data-title="本站采用多线部署，主线路托管于Vercel" title=""><img src="https://img.shields.io/badge/Hosted-Vercel-brightgreen?style=flat&amp;logo=Vercel" alt=""/></a><a class="github-badge" target="_blank" href="http://www.beian.gov.cn/portal/recordQuery" style="margin-inline:5px" data-title="网站备案" title=""><img src="https://img.shields.io/badge/渝公网安备-50011802010611号-blue?style=flat&amp;logo=备案" alt=""/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title=""><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub" alt=""/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title=""><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&amp;logo=Claris" alt=""/></a></p>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="/js/runtime.js"></script><!-- hexo injector body_end end --></body></html>
